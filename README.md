@@ -76,28 +76,31 @@ Provide visuals of your app's screens. You can use tools like Figma or pictures 
 
 #### Login Page
 
-![](./assets/login-page.png)
+![](./assets/user-login-page.png)
 
 #### Opportunities Page
 
-![](./assets/opportunities-page.png)
+![](./assets/all-opportunities-page.png)
 
 #### Single Opportunity Page
 
-![](./assets/opportunity-page.png)
+![](./assets/one-opportunity-page.png)
 
 #### User Info Page
 
-![](./assets/user-info.png)
+![](./assets/user-profile-page.png)
 
 #### Chat
 
-![](./assets/chat.png)
+![](./assets/opportunity-chat-page.png)
 
-#### Login Page
+#### Create Opportunity Page
 
-![](./assets/create-opportunity.png)
-![](./assets/my-opportunities.png)
+![](./assets/create-new-opportunity-page.png)
+
+#### My Opportunities Page
+
+![](./assets/my-opportunities-page.png)
 
 ### Data
 
