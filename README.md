@@ -74,17 +74,34 @@ No external APIs will be used for this sprint.
 
 Provide visuals of your app's screens. You can use tools like Figma or pictures of hand-drawn sketches.
 
+#### Login Page
+
 ![](./assets/login-page.png)
+
+#### Opportunities Page
+
 ![](./assets/opportunities-page.png)
+
+#### Single Opportunity Page
+
 ![](./assets/opportunity-page.png)
+
+#### User Info Page
+
 ![](./assets/user-info.png)
+
+#### Chat
+
 ![](./assets/chat.png)
+
+#### Login Page
+
 ![](./assets/create-opportunity.png)
 ![](./assets/my-opportunities.png)
 
 ### Data
 
-Describe your data and the relationships between them. You can show this visually using diagrams, or write it out.
+![](./assets/nlist-data-structure.png)
 
 ### Endpoints
 
