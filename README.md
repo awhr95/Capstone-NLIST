@@ -110,6 +110,27 @@ Provide visuals of your app's screens. You can use tools like Figma or pictures 
 
 **GET /opportunities**
 
+- Get a list of all opportunities
+
+Response:
+
+```
+[
+    {
+        "id": 1,
+        "title": "Save the Children",
+        "description": "As a small shop in clapham we are always looking for volunteers!",
+        "location": "Clapham"
+        "Address": "36 Clapham High St, London SW4 7UR"
+        "times": "9-5",
+        "chat_log": "true"
+        "img": "img_address"
+        "created_at": timestamp
+    },
+    ...
+]
+```
+
 **GET /opportunities/:id**
 
 **POST /opportunities/:id/comments**
