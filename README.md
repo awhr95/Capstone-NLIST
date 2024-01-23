@@ -74,6 +74,14 @@ No external APIs will be used for this sprint.
 
 Provide visuals of your app's screens. You can use tools like Figma or pictures of hand-drawn sketches.
 
+![](./assets/login-page.png)
+![](./assets/opportunities-page.png)
+![](./assets/opportunity-page.png)
+![](./assets/user-info.png)
+![](./assets/chat.png)
+![](./assets/create-opportunity.png)
+![](./assets/my-opportunities.png)
+
 ### Data
 
 Describe your data and the relationships between them. You can show this visually using diagrams, or write it out.
