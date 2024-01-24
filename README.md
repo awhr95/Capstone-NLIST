@@ -80,27 +80,27 @@ Provide visuals of your app's screens. You can use tools like Figma or pictures 
 
 #### Opportunities Page
 
-![](./src/assets/all-opportunities-page.png)
+![](./src/assets/read-me-assets/all-opportunities-page.png)
 
 #### Single Opportunity Page
 
-![](./src/assets/one-opportunity-page.png)
+![](./src/assets/read-me-assets/one-opportunity-page.png)
 
 #### User Info Page
 
-![](./src/assets/user-profile-page.png)
+![](./src/assets/read-me-assets/user-profile-page.png)
 
 #### Create Opportunity Page
 
-![](./src/assets/create-new-opportunity-page.png)
+![](./src/assets/read-me-assets/create-new-opportunity-page.png.png)
 
 #### My Opportunities Page
 
-![](./src/assets/my-opportunities-page.png)
+![](./src/assets/read-me-assets/my-opportunities-page.png)
 
 ### Data
 
-![](./src/assets/read-me-assets/data-map.png)
+![](./src/assets/read-me-assets/read-me-assets/data-map.png)
 
 ### Endpoints
 
