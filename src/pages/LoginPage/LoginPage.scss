@@ -1,0 +1,16 @@
+@use "../../../styles/partials/breakpoints" as *;
+@use "../../../styles/partials/vairables" as *;
+@use "../../../styles/partials/typography" as *;
+@use "../../../styles/partials/resets" as *;
+
+.login {
+  &__header {
+    height: 10rem;
+    background-color: $primary-color;
+    display: flex;
+    justify-content: center;
+  }
+  &__logo {
+    height: 100%;
+  }
+}
