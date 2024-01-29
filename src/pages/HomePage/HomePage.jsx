@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import Nav from "../../components/Nav/Nav";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import FooterNav from "../../components/FooterNav/FooterNav";
 
 function HomePage() {
   const apiUrl = process.env.REACT_APP_URL;
@@ -65,6 +66,7 @@ function HomePage() {
           })}
         </ul>
       </section>
+      <FooterNav />
     </>
   );
 }
