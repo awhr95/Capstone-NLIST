@@ -23,7 +23,7 @@ const LoginPage = () => {
 
       sessionStorage.setItem("token", response.data.token);
 
-      navigate("/profile");
+      navigate("/homepage");
     } catch (error) {
       setError(error.response.data);
     }
@@ -42,6 +42,9 @@ const LoginPage = () => {
       </form>
       <p>
         Need an account? <Link to="/signup">Sign up</Link>
+      </p>
+      <p>
+        F.A.Q <Link to="/signup">Sign up</Link>
       </p>
     </main>
   );
