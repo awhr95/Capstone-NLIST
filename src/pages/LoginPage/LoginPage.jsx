@@ -14,18 +14,19 @@ const LoginPage = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:5050/api/users/login",
+        `${process.env.REACT_APP_URL}:${process.env.REACT_APP_PORT}/users/login`,
         {
           email: event.target.email.value,
           password: event.target.password.value,
         }
       );
+      console.log(response);
 
       sessionStorage.setItem("token", response.data.token);
 
       navigate("/homepage");
     } catch (error) {
-      setError(error.response.data);
+      setError(error.response);
     }
   };
   return (
@@ -40,12 +41,16 @@ const LoginPage = () => {
         <button className="login__button">Log in</button>
         {error && <div className="login__message">{error}</div>}
       </form>
-      <p>
-        Need an account? <Link to="/signup">Sign up</Link>
-      </p>
-      <p>
-        F.A.Q <Link to="/signup">Sign up</Link>
-      </p>
+      <section className="login__links">
+        <Link className="login__signup-link" to="/signup">
+          <p className="login__signup">Need an account?</p>
+          <p className="login__signup">Sign up here</p>
+        </Link>
+
+        <Link className="login__faq" to="/FAQ">
+          FAQ
+        </Link>
+      </section>
     </main>
   );
 };

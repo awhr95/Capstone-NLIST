@@ -1,0 +1,23 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/vairables" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/resets" as *;
+
+.search {
+  display: flex;
+  justify-content: center;
+
+  &__box {
+    background-image: url("../../assets/icons/search.svg");
+    background-repeat: no-repeat;
+    background-position: 0.5rem;
+    text-indent: 3rem;
+
+    border-radius: 3px;
+    font-family: inherit;
+    background-color: $secondary-color-light;
+    border: none;
+
+    width: 85%;
+  }
+}
