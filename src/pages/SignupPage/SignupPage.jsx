@@ -11,13 +11,15 @@ function Signup() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      await axios.post(
+      const userSignUp = await axios.post(
         `${process.env.REACT_APP_URL}:${process.env.REACT_APP_PORT}/users/register`,
         {
           email: event.target.email.value,
           password: event.target.password.value,
         }
       );
+      sessionStorage.setItem("user_id", userSignUp.data.id);
+      console.log(userSignUp.data.id);
       navigate("/login");
     } catch (error) {
       event.target.reset();

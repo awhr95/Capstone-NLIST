@@ -29,7 +29,6 @@ function HomePage() {
   if (!opportunities) {
     return <p>Loading...</p>;
   }
-  console.log(opportunities);
   return (
     <>
       <Header />

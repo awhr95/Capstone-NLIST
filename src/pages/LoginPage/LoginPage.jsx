@@ -20,9 +20,10 @@ const LoginPage = () => {
           password: event.target.password.value,
         }
       );
-      console.log(response);
+      console.log(response.data);
 
       sessionStorage.setItem("token", response.data.token);
+      sessionStorage.setItem("user_id", response.data.id);
 
       navigate("/homepage");
     } catch (error) {
@@ -32,13 +33,15 @@ const LoginPage = () => {
   return (
     <main className="login">
       <header className="login__header">
-        <img className="login__logo" src={nlistLogo}></img>
+        <img className="login__logo" alt="logo" src={nlistLogo}></img>
       </header>
       <form className="login__form" onSubmit={handleSubmit}>
         <h1 className="login__title">Log in</h1>
         <Input type="text" name="email" label="Email" />
         <Input type="password" name="password" label="Password" />
-        <button className="login__button">Log in</button>
+        <button type="submit" className="login__button">
+          Log in
+        </button>
         {error && <div className="login__message">{error}</div>}
       </form>
       <section className="login__links">
