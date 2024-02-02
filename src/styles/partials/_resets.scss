@@ -1,0 +1,13 @@
+@use "./typography" as *;
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: Abel;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
