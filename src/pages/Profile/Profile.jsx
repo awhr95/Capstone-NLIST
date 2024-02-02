@@ -3,6 +3,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import userImg from "../../assets/icons/user.svg";
+import FooterNav from "../../components/FooterNav/FooterNav";
 
 const apiUrl = process.env.REACT_APP_URL;
 const port = process.env.REACT_APP_PORT;
@@ -77,6 +78,7 @@ const Profile = ({ user }) => {
       </section>
       <button onClick={logOut}>log out</button>
       <Link to={"/edit-profile"}>Edit Profile</Link>
+      <FooterNav />
     </main>
   );
 };
