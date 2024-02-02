@@ -45,7 +45,7 @@ const CreateOpportunity = () => {
     }
     return true;
   };
-  //
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
