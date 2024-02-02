@@ -11,6 +11,7 @@ const port = process.env.REACT_APP_PORT;
 const CreateOpportunity = () => {
   const navigate = useNavigate();
   const [error, setError] = useState({});
+  const user = sessionStorage.getItem("user_id");
 
   const [formFields, setFormFields] = useState({
     title: "",
@@ -50,6 +51,7 @@ const CreateOpportunity = () => {
     e.preventDefault();
 
     const createdOpp = {
+      user_id: user,
       title: formFields.title,
       description: formFields.description,
       date_of_opportunity: formFields.date_of_opportunity,

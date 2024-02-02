@@ -35,7 +35,6 @@ const OpportunityPage = () => {
   useEffect(() => {
     fetchOpportunity();
   }, [opportunityId]);
-  //   const volunteers = opportunity.cleanUsers;
 
   const userOppSignUp = async () => {
     const userId = sessionStorage.getItem("user_id");
@@ -43,11 +42,23 @@ const OpportunityPage = () => {
       user_id: userId,
       opportunities_id: opportunityId,
     };
+    console.log(userId);
+
+    const volunteerIds = opportunity.cleanUsers.map((volunteer) => {
+      return volunteer.id;
+    });
+
+    if (!volunteerIds.includes(userId)) {
+      console.log(`user ${userId} already exists`);
+      return;
+    }
+
     try {
       await axios.post(
         `${apiUrl}:${port}/opportunities/signup/${opportunityId}`,
         newRecord
       );
+      fetchOpportunity();
     } catch (error) {
       console.error(error.message);
     }
@@ -56,6 +67,7 @@ const OpportunityPage = () => {
   if (!opportunity) {
     return <p>Loading...</p>;
   }
+
   return (
     <>
       <main>
