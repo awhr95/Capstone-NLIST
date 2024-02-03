@@ -13,6 +13,7 @@ import SavedList from "./pages/SavedList/SavedList";
 import Charities from "./pages/Charities/Charities";
 import Events from "./pages/Events/Events";
 import Individual from "./pages/Individual/Individual";
+import OneOff from "./pages/OneOff/OneOff";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -35,6 +36,7 @@ function App() {
         <Route path="/charities" element={<Charities />} />
         <Route path="/events" element={<Events />} />
         <Route path="/individual" element={<Individual />} />
+        <Route path="/one-off" element={<OneOff />} />
         <Route
           path="/opportunity/:opportunityId"
           element={<OpportunityPage />}
