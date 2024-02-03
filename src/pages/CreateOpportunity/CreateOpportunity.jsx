@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Input from "../../components/Input/Input";
+import FooterNav from "../../components/FooterNav/FooterNav";
 
 const apiUrl = process.env.REACT_APP_URL;
 const port = process.env.REACT_APP_PORT;
@@ -125,6 +126,7 @@ const CreateOpportunity = () => {
         <button type="submit"> Create New Opportunity</button>
         <Link to="/homepage">Cancel</Link>
       </form>
+      <FooterNav />
     </main>
   );
 };

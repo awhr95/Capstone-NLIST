@@ -31,7 +31,7 @@ function App() {
           path="/opportunity/:opportunityId"
           element={<OpportunityPage />}
         />
-        <Route path="/create-opportunity" element={<CreateOpportunity />} />
+        <Route path="/create-listing" element={<CreateOpportunity />} />
       </Routes>
     </BrowserRouter>
   );

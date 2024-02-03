@@ -14,8 +14,8 @@ const FooterNav = () => {
         <NavLink to="/mylist" className={"nav__links"}>
           My List
         </NavLink>
-        <NavLink to="/homepage" className={"nav__links"}>
-          Mssgs
+        <NavLink to="/create-listing" className={"nav__links"}>
+          Create Listing
         </NavLink>
         <NavLink to="/profile" className={"nav__links"}>
           Profile
