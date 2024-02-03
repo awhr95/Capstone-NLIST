@@ -13,7 +13,6 @@ const Profile = ({ user }) => {
   const navigate = useNavigate();
 
   const foundUser = sessionStorage.getItem("user_id");
-  console.log(foundUser);
 
   const fetchProfile = async () => {
     try {
@@ -26,9 +25,6 @@ const Profile = ({ user }) => {
     fetchProfile();
   }, []);
 
-  console.log(profile);
-
-  // console.log(liveOppNumber(profile.opportunities));
   function logOut() {
     sessionStorage.removeItem("user_id");
     sessionStorage.removeItem("token");
@@ -36,6 +32,7 @@ const Profile = ({ user }) => {
       navigate("/homepage");
     }, 500);
   }
+  console.log(profile);
 
   if (!profile) {
     return <p>Loading...</p>;

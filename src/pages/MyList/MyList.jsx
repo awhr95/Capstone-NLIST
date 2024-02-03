@@ -1,4 +1,4 @@
-import "./HomePage.scss";
+import "./MyList.scss";
 import Header from "../../components/Header/Header";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -10,12 +10,13 @@ function HomePage() {
   const apiUrl = process.env.REACT_APP_URL;
   const port = process.env.REACT_APP_PORT;
 
-  const [allOpportunities, setAllOpportunities] = useState(null);
+  const [myOpportunities, setMyOpportunities] = useState(null);
+  const user = sessionStorage.getItem("user_id");
 
   const fetchOpportunities = async () => {
     try {
-      const response = await axios.get(`${apiUrl}:${port}/opportunities`);
-      setAllOpportunities(response.data);
+      const response = await axios.get(`${apiUrl}:${port}/users/${user}`);
+      setMyOpportunities(response.data);
     } catch (error) {
       console.error(error.message);
     }
@@ -25,14 +26,16 @@ function HomePage() {
     fetchOpportunities();
   }, []);
 
-  if (!allOpportunities) {
+  if (!myOpportunities) {
     return <p>Loading...</p>;
   }
+  console.log(myOpportunities.opportunities);
+
   return (
     <>
       <Header />
       <FilterMenu />
-      <Opportunity opportunities={allOpportunities} />
+      <Opportunity opportunities={myOpportunities.opportunities} />
       <FooterNav />
     </>
   );

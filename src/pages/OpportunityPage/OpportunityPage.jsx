@@ -27,7 +27,6 @@ const OpportunityPage = () => {
         `${apiUrl}:${port}/opportunities/${opportunityId}`
       );
       setOpportunity(response.data);
-      console.log(response.data);
     } catch (error) {
       console.error(error.message);
     }
@@ -38,17 +37,17 @@ const OpportunityPage = () => {
 
   const userOppSignUp = async () => {
     const userId = sessionStorage.getItem("user_id");
+
     const newRecord = {
       user_id: userId,
       opportunities_id: opportunityId,
     };
-    console.log(userId);
 
     const volunteerIds = opportunity.cleanUsers.map((volunteer) => {
       return volunteer.id;
     });
 
-    if (!volunteerIds.includes(userId)) {
+    if (volunteerIds.includes(Number(userId))) {
       console.log(`user ${userId} already exists`);
       return;
     }

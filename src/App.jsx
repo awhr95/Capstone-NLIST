@@ -8,13 +8,13 @@ import OpportunityPage from "./pages/OpportunityPage/OpportunityPage";
 import CreateOpportunity from "./pages/CreateOpportunity/CreateOpportunity";
 import Profile from "./pages/Profile/Profile";
 import EditProfile from "./pages/EditProfile/EditProfile";
+import MyList from "./pages/MyList/MyList";
 
 function App() {
   const [user, setUser] = useState(null);
 
   useEffect(() => {
     const foundUser = sessionStorage.getItem("user_id");
-    console.log(foundUser);
     setUser(foundUser);
   }, []);
 
@@ -26,6 +26,7 @@ function App() {
         <Route path="/profile" element={<Profile user={user} />} />
         <Route path="/edit-profile" element={<EditProfile user={user} />} />
         <Route path="/homepage" element={<HomePage />} />
+        <Route path="/mylist" element={<MyList />} />
         <Route
           path="/opportunity/:opportunityId"
           element={<OpportunityPage />}

@@ -11,7 +11,7 @@ const FooterNav = () => {
         <NavLink to="/saved" className={"nav__links"}>
           Saved
         </NavLink>
-        <NavLink to="/my-list" className={"nav__links"}>
+        <NavLink to="/mylist" className={"nav__links"}>
           My List
         </NavLink>
         <NavLink to="/homepage" className={"nav__links"}>
