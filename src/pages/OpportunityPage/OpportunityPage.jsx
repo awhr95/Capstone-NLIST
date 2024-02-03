@@ -48,7 +48,7 @@ const OpportunityPage = () => {
   useEffect(() => {
     fetchOpportunity();
     fetchUser();
-  }, [opportunityId]);
+  });
 
   const userOppSignUp = async () => {
     if (!userId) {

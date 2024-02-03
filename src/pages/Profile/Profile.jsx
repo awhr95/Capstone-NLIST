@@ -23,7 +23,7 @@ const Profile = ({ user }) => {
 
   useEffect(() => {
     fetchProfile();
-  }, []);
+  });
 
   function logOut() {
     sessionStorage.removeItem("user_id");
@@ -32,7 +32,6 @@ const Profile = ({ user }) => {
       navigate("/homepage");
     }, 500);
   }
-  console.log(profile);
 
   if (!profile) {
     return <p>Loading...</p>;

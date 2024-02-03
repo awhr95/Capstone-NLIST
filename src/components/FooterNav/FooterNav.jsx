@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom";
 import "./FooterNav.scss";
 const FooterNav = () => {

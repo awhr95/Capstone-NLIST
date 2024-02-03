@@ -5,6 +5,9 @@ import { Link, useNavigate } from "react-router-dom";
 import Header from "../../components/Header/Header";
 import Input from "../../components/Input/Input";
 import FooterNav from "../../components/FooterNav/FooterNav";
+import React from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const apiUrl = process.env.REACT_APP_URL;
 const port = process.env.REACT_APP_PORT;
@@ -13,6 +16,17 @@ const CreateOpportunity = () => {
   const navigate = useNavigate();
   const [error, setError] = useState({});
   const user = sessionStorage.getItem("user_id");
+  const notify = () =>
+    toast("Listing Created!", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   const [formFields, setFormFields] = useState({
     title: "",
@@ -64,7 +78,7 @@ const CreateOpportunity = () => {
     if (isFormValid()) {
       setTimeout(() => {
         navigate("/homepage");
-      }, 500);
+      }, 5000);
       try {
         await axios.post(
           `${apiUrl}:${port}/opportunities/create-opportunity`,
@@ -123,7 +137,21 @@ const CreateOpportunity = () => {
           label="Number of Volunteers Needed"
           className=""
         />
-        <button type="submit"> Create New Opportunity</button>
+        <button onClick={notify} type="submit">
+          Create New Opportunity
+        </button>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        ></ToastContainer>
         <Link to="/homepage">Cancel</Link>
       </form>
       <FooterNav />

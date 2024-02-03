@@ -24,7 +24,7 @@ function SavedList() {
 
   useEffect(() => {
     fetchOpportunities();
-  }, []);
+  });
 
   if (!savedOpportunities) {
     return <p>Loading...</p>;
