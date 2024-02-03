@@ -1,4 +1,4 @@
-import "./Events.scss";
+import "./Individual.scss";
 import Header from "../../components/Header/Header";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -6,38 +6,40 @@ import FooterNav from "../../components/FooterNav/FooterNav";
 import Opportunity from "../../components/Opportunities/Opportunities";
 import FilterMenu from "../../components/FilterMenu/FilerMenu";
 
-function Events() {
+function Individual() {
   const apiUrl = process.env.REACT_APP_URL;
   const port = process.env.REACT_APP_PORT;
 
-  const [eventsOpportunities, setEventsOpportunities] = useState(null);
-  const fetchEventsOpportunities = async () => {
+  const [individualOpportunities, setIndividualOpportunities] = useState(null);
+  const fetchIndividualOpportunities = async () => {
     try {
       const response = await axios.get(`${apiUrl}:${port}/opportunities`);
-      setEventsOpportunities(response.data);
+      setIndividualOpportunities(response.data);
     } catch (error) {
       console.error(error.message);
     }
   };
 
   useEffect(() => {
-    fetchEventsOpportunities();
+    fetchIndividualOpportunities();
   });
 
-  if (!eventsOpportunities) {
+  if (!individualOpportunities) {
     return <p>Loading...</p>;
   }
 
-  const onlyEvents = eventsOpportunities.filter((opp) => opp.type === "Event");
+  const onlyIndividual = individualOpportunities.filter(
+    (opp) => opp.type === "Event"
+  );
 
   return (
     <>
       <Header />
       <FilterMenu />
-      <Opportunity opportunities={onlyEvents} />
+      <Opportunity opportunities={onlyIndividual} />
       <FooterNav />
     </>
   );
 }
 
-export default Events;
+export default Individual;
