@@ -13,19 +13,22 @@ function Nav() {
       <NavLink to="/events" className={"nav__links"}>
         Events
       </NavLink>
+      <NavLink to="/community" className={"nav__links"}>
+        Community
+      </NavLink>
       <NavLink to="/individual" className={"nav__links"}>
         Individual
       </NavLink>
       <NavLink to="/one-off" className={"nav__links"}>
         One-Off
       </NavLink>
-      <NavLink to="/weekends" className={"nav__links"}>
-        Weekends
-      </NavLink>
-      <NavLink to="/midweek" className={"nav__links"}>
+      <NavLink to="/homepage" className={"nav__links"}>
         Midweek
       </NavLink>
-      <NavLink to="/afterwork" className={"nav__links"}>
+      <NavLink to="/homepage" className={"nav__links"}>
+        Weekends
+      </NavLink>
+      <NavLink to="/homepage" className={"nav__links"}>
         Afterwork
       </NavLink>
     </nav>
