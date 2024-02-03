@@ -16,9 +16,12 @@ function timeFormatter(timeString) {
 }
 const apiUrl = process.env.REACT_APP_URL;
 const port = process.env.REACT_APP_PORT;
+const userId = sessionStorage.getItem("user_id");
 
 const OpportunityPage = () => {
   const [opportunity, setOpportunity] = useState(null);
+  const [user, setUser] = useState(null);
+  const [userLogin, setUserLogin] = useState(false);
   const { opportunityId } = useParams();
 
   const fetchOpportunity = async () => {
@@ -31,13 +34,27 @@ const OpportunityPage = () => {
       console.error(error.message);
     }
   };
+
+  const fetchUser = async () => {
+    try {
+      const response = await axios.get(
+        `${apiUrl}:${port}/users/saved/${userId}`
+      );
+      setUser(response.data);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
   useEffect(() => {
     fetchOpportunity();
+    fetchUser();
   }, [opportunityId]);
 
   const userOppSignUp = async () => {
-    const userId = sessionStorage.getItem("user_id");
-
+    if (!userId) {
+      setUserLogin(true);
+      return;
+    }
     const newRecord = {
       user_id: userId,
       opportunities_id: opportunityId,
@@ -55,6 +72,35 @@ const OpportunityPage = () => {
     try {
       await axios.post(
         `${apiUrl}:${port}/opportunities/signup/${opportunityId}`,
+        newRecord
+      );
+      fetchOpportunity();
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  const userOppSave = async () => {
+    if (!userId) {
+      return;
+    }
+    const newRecord = {
+      user_id: userId,
+      opportunities_id: opportunityId,
+    };
+
+    const alreadySaved = user.savedOpportunities.map((opp) => {
+      return opp.id;
+    });
+
+    if (alreadySaved.includes(Number(opportunityId))) {
+      console.log(`opp ${opportunityId} already saved`);
+      return;
+    }
+
+    try {
+      await axios.post(
+        `${apiUrl}:${port}/opportunities/save/${opportunityId}`,
         newRecord
       );
       fetchOpportunity();
@@ -98,7 +144,10 @@ const OpportunityPage = () => {
           })}
         </ul>
       </main>
+      <p>{!user ? "Must be signed in to Sign up or Save" : ""}</p>
       <button onClick={userOppSignUp}>sign up</button>
+      <button onClick={userOppSave}>save</button>
+      <Link to={"/"}>{userLogin ? "Login" : ""}</Link>
     </>
   );
 };

@@ -9,6 +9,7 @@ import CreateOpportunity from "./pages/CreateOpportunity/CreateOpportunity";
 import Profile from "./pages/Profile/Profile";
 import EditProfile from "./pages/EditProfile/EditProfile";
 import MyList from "./pages/MyList/MyList";
+import SavedList from "./pages/SavedList/SavedList";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -27,6 +28,7 @@ function App() {
         <Route path="/edit-profile" element={<EditProfile user={user} />} />
         <Route path="/homepage" element={<HomePage />} />
         <Route path="/mylist" element={<MyList />} />
+        <Route path="/saved" element={<SavedList />} />
         <Route
           path="/opportunity/:opportunityId"
           element={<OpportunityPage />}
