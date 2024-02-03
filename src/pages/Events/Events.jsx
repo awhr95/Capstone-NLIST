@@ -1,4 +1,4 @@
-import "./Charities.scss";
+import "./Events.scss";
 import Header from "../../components/Header/Header";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -6,40 +6,38 @@ import FooterNav from "../../components/FooterNav/FooterNav";
 import Opportunity from "../../components/Opportunities/Opportunities";
 import FilterMenu from "../../components/FilterMenu/FilerMenu";
 
-function Charities() {
+function Events() {
   const apiUrl = process.env.REACT_APP_URL;
   const port = process.env.REACT_APP_PORT;
 
-  const [charityOpportunities, setCharityOpportunities] = useState(null);
+  const [eventsOpportunities, setEventsOpportunities] = useState(null);
   const fetchCharityOpportunities = async () => {
     try {
       const response = await axios.get(`${apiUrl}:${port}/opportunities`);
-      setCharityOpportunities(response.data);
+      setEventsOpportunities(response.data);
     } catch (error) {
       console.error(error.message);
     }
   };
 
   useEffect(() => {
-    fetchCharityOpportunities();
+    fetchEventsOpportunities();
   });
 
-  if (!charityOpportunities) {
+  if (!eventsOpportunities) {
     return <p>Loading...</p>;
   }
 
-  const onlyCharity = charityOpportunities.filter(
-    (opp) => opp.type === "Charity"
-  );
+  const onlyEvents = eventsOpportunities.filter((opp) => opp.type === "Events");
 
   return (
     <>
       <Header />
       <FilterMenu />
-      <Opportunity opportunities={onlyCharity} />
+      <Opportunity opportunities={onlyEvents} />
       <FooterNav />
     </>
   );
 }
 
-export default Charities;
+export default Events;

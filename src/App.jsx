@@ -11,6 +11,7 @@ import EditProfile from "./pages/EditProfile/EditProfile";
 import MyList from "./pages/MyList/MyList";
 import SavedList from "./pages/SavedList/SavedList";
 import Charities from "./pages/Charities/Charities";
+import Events from "./pages/Events/Events";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -31,6 +32,7 @@ function App() {
         <Route path="/mylist" element={<MyList />} />
         <Route path="/saved" element={<SavedList />} />
         <Route path="/charities" element={<Charities />} />
+        <Route path="/events" element={<Events />} />
         <Route
           path="/opportunity/:opportunityId"
           element={<OpportunityPage />}
