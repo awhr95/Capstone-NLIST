@@ -4,6 +4,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import backArrow from "../../assets/icons/backarrow.svg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function timeFormatter(timeString) {
   let startTime = new Date(`2024-01-01T${timeString}`);
@@ -23,6 +25,50 @@ const OpportunityPage = () => {
   const [user, setUser] = useState(null);
   const [userLogin, setUserLogin] = useState(false);
   const { opportunityId } = useParams();
+  const notifySave = () =>
+    toast.success("Saved for later!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  const notifySignup = () =>
+    toast.success("Signed up!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  const notifyAlreadySignedUp = () =>
+    toast.info("Already signed up!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  const notifyAlreadySaved = () =>
+    toast.info("Already saved!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   const fetchOpportunity = async () => {
     try {
@@ -65,7 +111,7 @@ const OpportunityPage = () => {
     });
 
     if (volunteerIds.includes(Number(userId))) {
-      console.log(`user ${userId} already exists`);
+      notifyAlreadySignedUp();
       return;
     }
 
@@ -74,6 +120,7 @@ const OpportunityPage = () => {
         `${apiUrl}:${port}/opportunities/signup/${opportunityId}`,
         newRecord
       );
+      notifySignup();
       fetchOpportunity();
     } catch (error) {
       console.error(error.message);
@@ -94,7 +141,7 @@ const OpportunityPage = () => {
     });
 
     if (alreadySaved.includes(Number(opportunityId))) {
-      console.log(`opp ${opportunityId} already saved`);
+      notifyAlreadySaved();
       return;
     }
 
@@ -103,6 +150,7 @@ const OpportunityPage = () => {
         `${apiUrl}:${port}/opportunities/save/${opportunityId}`,
         newRecord
       );
+      notifySave();
       fetchOpportunity();
     } catch (error) {
       console.error(error.message);
@@ -117,7 +165,7 @@ const OpportunityPage = () => {
     <>
       <main className="opportunity">
         <div className="opportunity__back">
-          <Link className="opportunity__backlink" to={"/homepage"}>
+          <Link className="opportunity__backlink" to={"/"}>
             <img src={backArrow} alt="back arrow" />
           </Link>
         </div>
@@ -167,9 +215,11 @@ const OpportunityPage = () => {
           </div>
         </section>
       </main>
-      <p>
-        {!user ? <Link to={"/"}>login in order to sign up or save</Link> : null}
-      </p>
+
+      <Link className="opportunity__login" to={"/login"}>
+        {!user ? "login in to sign up or save" : null}
+      </Link>
+
       {user && (
         <section className="opportunity__buttons">
           <button className="opportunity__save" onClick={userOppSave}>
@@ -181,6 +231,18 @@ const OpportunityPage = () => {
         </section>
       )}
       <Link to={"/"}>{userLogin ? "Login" : ""}</Link>
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      ></ToastContainer>
     </>
   );
 };

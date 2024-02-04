@@ -83,7 +83,7 @@ const CreateOpportunity = () => {
     if (isFormValid()) {
       notify();
       setTimeout(() => {
-        navigate("/homepage");
+        navigate("/");
       }, 5000);
       try {
         await axios.post(

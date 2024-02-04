@@ -26,7 +26,12 @@ function HomePage() {
   }, []);
 
   if (!allOpportunities) {
-    return <p>Loading...</p>;
+    return (
+      <>
+        <Header />
+        <FilterMenu />
+      </>
+    );
   }
   return (
     <>

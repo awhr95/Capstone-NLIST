@@ -25,7 +25,12 @@ function Charities() {
   });
 
   if (!charityOpportunities) {
-    return <p>Loading...</p>;
+    return (
+      <>
+        <Header />
+        <FilterMenu />
+      </>
+    );
   }
 
   const onlyCharity = charityOpportunities.filter(

@@ -21,7 +21,7 @@ function Signup() {
       );
       sessionStorage.setItem("user_id", userSignUp.data.id);
       console.log(userSignUp.data.id);
-      navigate("/");
+      navigate("/login");
     } catch (error) {
       event.target.reset();
       setError(error.response);

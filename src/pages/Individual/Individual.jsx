@@ -25,7 +25,12 @@ function Individual() {
   }, []);
 
   if (!individualOpportunities) {
-    return <p>Loading...</p>;
+    return (
+      <>
+        <Header />
+        <FilterMenu />
+      </>
+    );
   }
 
   const onlyIndividual = individualOpportunities.filter(

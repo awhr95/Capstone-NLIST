@@ -24,7 +24,7 @@ const LoginPage = () => {
       sessionStorage.setItem("token", response.data.token);
       sessionStorage.setItem("user_id", response.data.id);
 
-      navigate("/homepage");
+      navigate("/");
     } catch (error) {
       setError(error.response);
     }

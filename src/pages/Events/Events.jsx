@@ -25,7 +25,12 @@ function Events() {
   });
 
   if (!eventsOpportunities) {
-    return <p>Loading...</p>;
+    return (
+      <>
+        <Header />
+        <FilterMenu />
+      </>
+    );
   }
 
   const onlyEvents = eventsOpportunities.filter((opp) => opp.type === "Event");

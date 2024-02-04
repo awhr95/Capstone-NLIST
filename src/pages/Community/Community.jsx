@@ -25,7 +25,12 @@ function Community() {
   }, []);
 
   if (!communityOpportunities) {
-    return <p>Loading...</p>;
+    return (
+      <>
+        <Header />
+        <FilterMenu />
+      </>
+    );
   }
 
   const onlyCommunity = communityOpportunities.filter(

@@ -29,11 +29,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/profile" element={<Profile user={user} />} />
         <Route path="/edit-profile" element={<EditProfile user={user} />} />
-        <Route path="/homepage" element={<HomePage />} />
+        <Route path="/" element={<HomePage />} />
         <Route path="/mylist" element={<MyList />} />
         <Route path="/saved" element={<SavedList />} />
         <Route path="/charities" element={<Charities />} />
