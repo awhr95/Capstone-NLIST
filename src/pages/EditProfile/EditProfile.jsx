@@ -1,7 +1,7 @@
 import "./EditProfile.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import backArrow from "../../assets/icons/backarrow.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -27,17 +27,6 @@ const EditProfile = () => {
     });
   const notifyFailure = () =>
     toast.error("Please fill all fields!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  const notifyNoChange = () =>
-    toast.info("No changes made!", {
       position: "top-right",
       autoClose: 3000,
       hideProgressBar: false,

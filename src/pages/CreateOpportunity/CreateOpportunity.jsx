@@ -2,7 +2,6 @@ import "./CreateOpportunity.scss";
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Input from "../../components/Input/Input";
 import FooterNav from "../../components/FooterNav/FooterNav";
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
@@ -97,106 +96,108 @@ const CreateOpportunity = () => {
   };
 
   return (
-    <main className="create-op">
-      <div className="create-op__back">
-        <Link className="create-op__backlink" to={"/homepage"}>
-          <img src={backArrow} alt="back arrow" />
-        </Link>
-      </div>
-      <form onSubmit={handleSubmit} className="create-op__form">
-        <h1 className="create-op__title">Create Opportunity</h1>
-        <label className="create-op__label" htmlFor="title">
-          Title
-        </label>
-        <input
-          onChange={handleChange}
-          type="text"
-          name="title"
-          className={`create-op__input ${
-            error.title && `create-op__input-error`
-          }`}
-          placeholder="Please add a title"
-        />
-        <label className="create-op__label" htmlFor="description">
-          Description
-        </label>
-
-        <textarea
-          onChange={handleChange}
-          name="description"
-          className={`create-op__input create-op__description ${
-            error.title && `create-op__input--error`
-          }`}
-          placeholder="Please add a detailed description"
-        />
-        <label className="create-op__label" htmlFor="description">
-          Type
-        </label>
-        <select
-          id="type"
-          name="type"
-          onChange={handleChange}
-          className="create-op__input create-op__type"
-          placeholder="Please add a detailed description"
-        >
-          <option value="Charity">Charity</option>
-          <option value="Events">Events</option>
-          <option value="Community">Community</option>
-          <option value="One-Off">One-off</option>
-          <option value="Education">Education</option>
-        </select>
-
-        <label className="create-op__label" htmlFor="date">
-          Date of Opportunity
-        </label>
-
-        <input
-          onChange={handleChange}
-          type="date"
-          name="date_of_opportunity"
-          className="create-op__input create-op__number"
-        />
-        <label className="create-op__label" htmlFor="start-time">
-          Start Time
-        </label>
-        <input
-          onChange={handleChange}
-          type="time"
-          name="start_time_of_opportunity"
-          className="create-op__input create-op__number"
-        />
-        <label className="create-op__label" htmlFor="end-time">
-          End Time
-        </label>
-
-        <input
-          onChange={handleChange}
-          type="time"
-          name="end_time_of_opportunity"
-          className="create-op__input create-op__number"
-        />
-        <label
-          className="create-op__label"
-          htmlFor="number_of_volunteers_needed"
-        >
-          Number of Volunteers
-        </label>
-
-        <input
-          onChange={handleChange}
-          type="number"
-          name="number_of_volunteers_needed"
-          className="create-op__input create-op__number"
-        />
-        <div className="create-op__buttons">
-          <button className="create-op__submit" type="submit">
-            Create New Opportunity
-          </button>
-          <Link className="create-op__cancel" to="/homepage">
-            Cancel
+    <main>
+      <div className="create-op">
+        <div className="create-op__back">
+          <Link className="create-op__backlink" to={"/"}>
+            <img src={backArrow} alt="back arrow" />
           </Link>
         </div>
-      </form>
+        <form onSubmit={handleSubmit} className="create-op__form">
+          <h1 className="create-op__title">Create Opportunity</h1>
+          <label className="create-op__label" htmlFor="title">
+            Title
+          </label>
+          <input
+            onChange={handleChange}
+            type="text"
+            name="title"
+            className={`create-op__input ${
+              error.title && `create-op__input-error`
+            }`}
+            placeholder="Please add a title"
+          />
+          <label className="create-op__label" htmlFor="description">
+            Description
+          </label>
+
+          <textarea
+            onChange={handleChange}
+            name="description"
+            className={`create-op__input create-op__description ${
+              error.title && `create-op__input--error`
+            }`}
+            placeholder="Please add a detailed description"
+          />
+          <label className="create-op__label" htmlFor="description">
+            Type
+          </label>
+          <select
+            id="type"
+            name="type"
+            onChange={handleChange}
+            className="create-op__input create-op__type"
+            placeholder="Please add a detailed description"
+          >
+            <option value="Charity">Charity</option>
+            <option value="Events">Events</option>
+            <option value="Community">Community</option>
+            <option value="One-Off">One-off</option>
+            <option value="Education">Education</option>
+          </select>
+
+          <label className="create-op__label" htmlFor="date">
+            Date of Opportunity
+          </label>
+
+          <input
+            onChange={handleChange}
+            type="date"
+            name="date_of_opportunity"
+            className="create-op__input create-op__number"
+          />
+          <label className="create-op__label" htmlFor="start-time">
+            Start Time
+          </label>
+          <input
+            onChange={handleChange}
+            type="time"
+            name="start_time_of_opportunity"
+            className="create-op__input create-op__number"
+          />
+          <label className="create-op__label" htmlFor="end-time">
+            End Time
+          </label>
+
+          <input
+            onChange={handleChange}
+            type="time"
+            name="end_time_of_opportunity"
+            className="create-op__input create-op__number"
+          />
+          <label
+            className="create-op__label"
+            htmlFor="number_of_volunteers_needed"
+          >
+            Number of Volunteers
+          </label>
+
+          <input
+            onChange={handleChange}
+            type="number"
+            name="number_of_volunteers_needed"
+            className="create-op__input create-op__number"
+          />
+          <div className="create-op__buttons">
+            <button className="create-op__submit" type="submit">
+              Create New Opportunity
+            </button>
+            <Link className="create-op__cancel" to="/homepage">
+              Cancel
+            </Link>
+          </div>
+        </form>
+      </div>
       <FooterNav />
       <ToastContainer
         position="top-right"

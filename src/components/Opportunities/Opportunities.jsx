@@ -11,6 +11,24 @@ function Opportunity({ opportunities }) {
     });
     return formattedTime;
   }
+  const isOpportunitiesEmpty = (opportunities) => {
+    return Object.keys(opportunities).length === 0;
+  };
+
+  if (isOpportunitiesEmpty(opportunities)) {
+    return (
+      <div className="opportunities__empty">
+        <section className="opportunities__card">
+          <h2>This section stores all youre ongoing opportunities</h2>
+          <h2>You have'nt signed up to any opportunities yet!</h2>
+        </section>
+        <section className="opportunities__card">
+          <h2>Have an explore and find some opportunities that suit!</h2>
+        </section>
+      </div>
+    );
+  }
+
   return (
     <section className="opportunities">
       <ul className="opportunities__list">

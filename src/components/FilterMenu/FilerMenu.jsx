@@ -1,6 +1,6 @@
 import "./FilterMenu.scss";
 import { Link } from "react-router-dom";
-import sliders from "../../assets/icons/sliders.svg";
+import map from "../../assets/icons/Map.svg";
 import Nav from "../../components/Nav/Nav";
 
 function FilterMenu() {
@@ -13,7 +13,7 @@ function FilterMenu() {
           placeholder="Charities, events, locations"
         />
         <Link to={"/map"}>
-          <img src={sliders} alt="filters" className="header__img--alt" />
+          <img src={map} alt="filters" className="header__img--alt" />
         </Link>
       </div>
       <Nav />

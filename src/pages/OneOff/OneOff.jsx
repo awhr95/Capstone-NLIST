@@ -25,7 +25,12 @@ function OneOff() {
   }, []);
 
   if (!oneOffOpportunities) {
-    return <p>Loading...</p>;
+    return (
+      <>
+        <Header />
+        <FilterMenu />
+      </>
+    );
   }
 
   const onlyOneOff = oneOffOpportunities.filter(

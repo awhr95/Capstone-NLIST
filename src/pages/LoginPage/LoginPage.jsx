@@ -10,23 +10,43 @@ const LoginPage = () => {
 
   const [error, setError] = useState("");
 
+  const [formFields, setFormFields] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleChange = (event) => {
+    setFormFields({ ...formFields, [event.target.name]: event.target.value });
+  };
+  const isFormValid = () => {
+    if (!formFields.email) {
+      return setError({ ...error, email: true });
+    }
+    if (!formFields.password) {
+      return setError({ ...error, password: true });
+    }
+    return true;
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const response = await axios.post(
-        `${process.env.REACT_APP_URL}:${process.env.REACT_APP_PORT}/users/login`,
-        {
-          email: event.target.email.value,
-          password: event.target.password.value,
-        }
-      );
+    if (isFormValid()) {
+      try {
+        const response = await axios.post(
+          `${process.env.REACT_APP_URL}:${process.env.REACT_APP_PORT}/users/login`,
+          {
+            email: event.target.email.value,
+            password: event.target.password.value,
+          }
+        );
 
-      sessionStorage.setItem("token", response.data.token);
-      sessionStorage.setItem("user_id", response.data.id);
+        sessionStorage.setItem("token", response.data.token);
+        sessionStorage.setItem("user_id", response.data.id);
 
-      navigate("/");
-    } catch (error) {
-      setError(error.response);
+        navigate("/");
+      } catch (error) {
+        setError(error.response);
+      }
     }
   };
   return (
@@ -36,8 +56,13 @@ const LoginPage = () => {
       </header>
       <form className="login__form" onSubmit={handleSubmit}>
         <h1 className="login__title">Log in</h1>
-        <Input type="text" name="email" label="Email" />
-        <Input type="password" name="password" label="Password" />
+        <Input type="text" name="email" label="Email" onChange={handleChange} />
+        <Input
+          type="password"
+          name="password"
+          label="Password"
+          onChange={handleChange}
+        />
         <button type="submit" className="login__button">
           Log in
         </button>
