@@ -22,7 +22,7 @@ function Individual() {
 
   useEffect(() => {
     fetchIndividualOpportunities();
-  });
+  }, []);
 
   if (!individualOpportunities) {
     return <p>Loading...</p>;

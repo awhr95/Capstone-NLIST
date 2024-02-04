@@ -24,7 +24,7 @@ function MyList() {
 
   useEffect(() => {
     fetchOpportunities();
-  });
+  }, []);
 
   if (!myOpportunities) {
     return <p>Loading...</p>;

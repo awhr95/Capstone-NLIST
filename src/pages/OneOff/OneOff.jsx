@@ -22,7 +22,7 @@ function OneOff() {
 
   useEffect(() => {
     fetchOneOffOpportunities();
-  });
+  }, []);
 
   if (!oneOffOpportunities) {
     return <p>Loading...</p>;

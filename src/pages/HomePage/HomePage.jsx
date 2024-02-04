@@ -23,7 +23,7 @@ function HomePage() {
 
   useEffect(() => {
     fetchOpportunities();
-  });
+  }, []);
 
   if (!allOpportunities) {
     return <p>Loading...</p>;

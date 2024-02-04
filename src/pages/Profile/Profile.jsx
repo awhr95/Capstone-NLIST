@@ -23,7 +23,7 @@ const Profile = ({ user }) => {
 
   useEffect(() => {
     fetchProfile();
-  });
+  }, []);
 
   function logOut() {
     sessionStorage.removeItem("user_id");

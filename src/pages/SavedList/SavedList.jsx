@@ -13,7 +13,7 @@ function SavedList() {
   const [savedOpportunities, setSavedOpportunities] = useState(null);
   const user = sessionStorage.getItem("user_id");
 
-  const fetchOpportunities = async () => {
+  const fetchSavedOpportunities = async () => {
     try {
       const response = await axios.get(`${apiUrl}:${port}/users/saved/${user}`);
       setSavedOpportunities(response.data);
@@ -23,13 +23,12 @@ function SavedList() {
   };
 
   useEffect(() => {
-    fetchOpportunities();
-  });
+    fetchSavedOpportunities();
+  }, []);
 
   if (!savedOpportunities) {
     return <p>Loading...</p>;
   }
-  console.log(savedOpportunities.savedOpportunities);
 
   return (
     <>

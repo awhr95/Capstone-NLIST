@@ -1,6 +1,7 @@
 import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
+
 import LoginPage from "./pages/LoginPage/LoginPage";
 import Signup from "./pages/SignupPage/SignupPage";
 import HomePage from "./pages/HomePage/HomePage";
@@ -14,6 +15,8 @@ import Charities from "./pages/Charities/Charities";
 import Events from "./pages/Events/Events";
 import Individual from "./pages/Individual/Individual";
 import OneOff from "./pages/OneOff/OneOff";
+import OppMap from "./pages/OppMapp/OppMap";
+import Community from "./pages/Community/Community";
 
 function App() {
   const [user, setUser] = useState(null);
@@ -37,6 +40,8 @@ function App() {
         <Route path="/events" element={<Events />} />
         <Route path="/individual" element={<Individual />} />
         <Route path="/one-off" element={<OneOff />} />
+        <Route path="/map" element={<OppMap />} />
+        <Route path="/community" element={<Community />} />
         <Route
           path="/opportunity/:opportunityId"
           element={<OpportunityPage />}

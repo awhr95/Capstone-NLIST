@@ -48,7 +48,7 @@ const OpportunityPage = () => {
   useEffect(() => {
     fetchOpportunity();
     fetchUser();
-  });
+  }, []);
 
   const userOppSignUp = async () => {
     if (!userId) {
@@ -145,8 +145,12 @@ const OpportunityPage = () => {
         </ul>
       </main>
       <p>{!user ? "Must be signed in to Sign up or Save" : ""}</p>
-      <button onClick={userOppSignUp}>sign up</button>
-      <button onClick={userOppSave}>save</button>
+      {user && (
+        <>
+          <button onClick={userOppSignUp}>sign up</button>
+          <button onClick={userOppSave}>save</button>
+        </>
+      )}
       <Link to={"/"}>{userLogin ? "Login" : ""}</Link>
     </>
   );

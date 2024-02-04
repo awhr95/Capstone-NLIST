@@ -22,7 +22,7 @@ function Community() {
 
   useEffect(() => {
     fetchCommunityOpportunities();
-  });
+  }, []);
 
   if (!communityOpportunities) {
     return <p>Loading...</p>;
