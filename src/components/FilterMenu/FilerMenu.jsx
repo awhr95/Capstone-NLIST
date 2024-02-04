@@ -12,7 +12,7 @@ function FilterMenu() {
           className="search__box"
           placeholder="Charities, events, locations"
         />
-        <Link>
+        <Link to={"/map"}>
           <img src={sliders} alt="filters" className="header__img--alt" />
         </Link>
       </div>

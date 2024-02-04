@@ -2,12 +2,12 @@ import "./CreateOpportunity.scss";
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "../../components/Header/Header";
 import Input from "../../components/Input/Input";
 import FooterNav from "../../components/FooterNav/FooterNav";
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import backArrow from "../../assets/icons/backarrow.svg";
 
 const apiUrl = process.env.REACT_APP_URL;
 const port = process.env.REACT_APP_PORT;
@@ -17,9 +17,9 @@ const CreateOpportunity = () => {
   const [error, setError] = useState({});
   const user = sessionStorage.getItem("user_id");
   const notify = () =>
-    toast("Listing Created!", {
+    toast.success("Listing Created!", {
       position: "top-right",
-      autoClose: 5000,
+      autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -31,6 +31,7 @@ const CreateOpportunity = () => {
   const [formFields, setFormFields] = useState({
     title: "",
     description: "",
+    type: "",
     date_of_opportunity: "",
     start_time_of_opportunity: "",
     end_time_of_opportunity: "",
@@ -46,6 +47,9 @@ const CreateOpportunity = () => {
     }
     if (!formFields.description) {
       return setError({ ...error, description: true });
+    }
+    if (!formFields.type) {
+      return setError({ ...error, type: true });
     }
     if (!formFields.date_of_opportunity) {
       return setError({ ...error, date_of_opportunity: true });
@@ -69,6 +73,7 @@ const CreateOpportunity = () => {
       user_id: user,
       title: formFields.title,
       description: formFields.description,
+      type: formFields.type,
       date_of_opportunity: formFields.date_of_opportunity,
       start_time_of_opportunity: formFields.start_time_of_opportunity,
       end_time_of_opportunity: formFields.end_time_of_opportunity,
@@ -76,6 +81,7 @@ const CreateOpportunity = () => {
     };
 
     if (isFormValid()) {
+      notify();
       setTimeout(() => {
         navigate("/homepage");
       }, 5000);
@@ -85,76 +91,125 @@ const CreateOpportunity = () => {
           createdOpp
         );
       } catch (error) {
-        console.log(error);
+        console.log({ error: error.message });
       }
     }
   };
 
   return (
-    <main>
-      <Header />
-      <form onSubmit={handleSubmit}>
-        <h1>Create Opportunity</h1>
-        <Input
+    <main className="create-op">
+      <div className="create-op__back">
+        <Link className="create-op__backlink" to={"/homepage"}>
+          <img src={backArrow} alt="back arrow" />
+        </Link>
+      </div>
+      <form onSubmit={handleSubmit} className="create-op__form">
+        <h1 className="create-op__title">Create Opportunity</h1>
+        <label className="create-op__label" htmlFor="title">
+          Title
+        </label>
+        <input
           onChange={handleChange}
           type="text"
           name="title"
-          label="Title"
-          className=""
+          className={`create-op__input ${
+            error.title && `create-op__input-error`
+          }`}
+          placeholder="Please add a title"
         />
-        <Input
+        <label className="create-op__label" htmlFor="description">
+          Description
+        </label>
+
+        <textarea
           onChange={handleChange}
-          type="textarea"
           name="description"
-          label="Description"
-          className=""
+          className={`create-op__input create-op__description ${
+            error.title && `create-op__input--error`
+          }`}
+          placeholder="Please add a detailed description"
         />
-        <Input
+        <label className="create-op__label" htmlFor="description">
+          Type
+        </label>
+        <select
+          id="type"
+          name="type"
+          onChange={handleChange}
+          className="create-op__input create-op__type"
+          placeholder="Please add a detailed description"
+        >
+          <option value="Charity">Charity</option>
+          <option value="Events">Events</option>
+          <option value="Community">Community</option>
+          <option value="One-Off">One-off</option>
+          <option value="Education">Education</option>
+        </select>
+
+        <label className="create-op__label" htmlFor="date">
+          Date of Opportunity
+        </label>
+
+        <input
           onChange={handleChange}
           type="date"
           name="date_of_opportunity"
-          label="Date of Opportunity"
-          className=""
+          className="create-op__input create-op__number"
         />
-        <Input
+        <label className="create-op__label" htmlFor="start-time">
+          Start Time
+        </label>
+        <input
           onChange={handleChange}
           type="time"
           name="start_time_of_opportunity"
-          label="Start Time"
-          className=""
+          className="create-op__input create-op__number"
         />
-        <Input
+        <label className="create-op__label" htmlFor="end-time">
+          End Time
+        </label>
+
+        <input
           onChange={handleChange}
           type="time"
           name="end_time_of_opportunity"
-          label="End Time"
-          className=""
+          className="create-op__input create-op__number"
         />
-        <Input
+        <label
+          className="create-op__label"
+          htmlFor="number_of_volunteers_needed"
+        >
+          Number of Volunteers
+        </label>
+
+        <input
           onChange={handleChange}
           type="number"
           name="number_of_volunteers_needed"
-          label="Number of Volunteers Needed"
-          className=""
+          className="create-op__input create-op__number"
         />
-        <button onClick={notify} type="submit">
-          Create New Opportunity
-        </button>
-        <ToastContainer
-          position="top-right"
-          autoClose={5000}
-          hideProgressBar={false}
-          newestOnTop={false}
-          closeOnClick
-          rtl={false}
-          pauseOnFocusLoss
-          draggable
-          pauseOnHover
-          theme="light"
-        ></ToastContainer>
-        <Link to="/homepage">Cancel</Link>
+        <div className="create-op__buttons">
+          <button className="create-op__submit" type="submit">
+            Create New Opportunity
+          </button>
+          <Link className="create-op__cancel" to="/homepage">
+            Cancel
+          </Link>
+        </div>
       </form>
       <FooterNav />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      ></ToastContainer>
     </main>
   );
 };
