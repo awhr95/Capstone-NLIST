@@ -2,7 +2,9 @@ import "./EditProfile.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import Input from "../../components/Input/Input";
+import backArrow from "../../assets/icons/backarrow.svg";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const apiUrl = process.env.REACT_APP_URL;
 const port = process.env.REACT_APP_PORT;
@@ -12,6 +14,39 @@ const EditProfile = () => {
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
   const foundUser = sessionStorage.getItem("user_id");
+  const notifySuccess = () =>
+    toast.success("Changes Made!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  const notifyFailure = () =>
+    toast.error("Please fill all fields!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
+  const notifyNoChange = () =>
+    toast.info("No changes made!", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+    });
 
   const fetchProfile = async () => {
     try {
@@ -66,56 +101,95 @@ const EditProfile = () => {
         `${apiUrl}:${port}/users/account/${foundUser}`,
         editedElement
       );
-      navigate("/profile");
+      notifySuccess();
+
+      setTimeout(() => {
+        navigate("/profile");
+      }, 3000);
     } else {
       console.log(editedElement);
+      notifyFailure();
     }
   };
 
   return (
-    <main>
+    <main className="edit">
+      <div className="edit__back">
+        <Link className="edit__backlink" to={"/profile"}>
+          <img src={backArrow} alt="back arrow" />
+        </Link>
+      </div>
+      <h1>Edit Your Profile</h1>
       <form onSubmit={handleSubmit} className="form">
-        <label>User Name</label>
+        <label className="form__label">User Name</label>
         <input
           type="text"
           name="user_name"
           value={profile.user_name}
           onChange={handleChange}
+          placeholder="Your username...."
           autoComplete="off"
+          className="form__input"
         />
-        <label>Email</label>
+        <label className="form__label">Email</label>
         <input
           type="text"
           name="email"
           value={profile.email}
           onChange={handleChange}
           autoComplete="off"
+          className="form__input"
         />
-        <label>Bio</label>
+        <label className="form__label">Bio</label>
         <input
           type="text-area"
+          placeholder="A bit about you...."
           name="bio"
           value={profile.bio}
           onChange={handleChange}
           autoComplete="off"
+          className="form__input form__bio"
         />
-        <label>First Name</label>
+        <label className="form__label">First Name</label>
         <input
           type="text"
           name="first_name"
+          placeholder="first name...."
           value={profile.first_name}
           onChange={handleChange}
           autoComplete="off"
+          className="form__input"
         />
-        <label>Last Name</label>
+        <label className="form__label">Last Name</label>
         <input
           type="text"
           name="last_name"
+          placeholder="last name...."
           value={profile.last_name}
           onChange={handleChange}
           autoComplete="off"
+          className="form__input"
         />
-        <button type="submit">Confirm changes</button>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        ></ToastContainer>
+        <section className="form__buttons">
+          <button className="form__submit" type="submit">
+            Confirm changes
+          </button>
+          <Link to={"/profile"} className="form__cancel">
+            Cancel
+          </Link>
+        </section>
       </form>
     </main>
   );

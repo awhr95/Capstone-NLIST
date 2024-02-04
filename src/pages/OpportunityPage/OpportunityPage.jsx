@@ -173,7 +173,7 @@ const OpportunityPage = () => {
       {user && (
         <section className="opportunity__buttons">
           <button className="opportunity__save" onClick={userOppSave}>
-            save
+            save for later
           </button>
           <button className="opportunity__signup" onClick={userOppSignUp}>
             sign up
