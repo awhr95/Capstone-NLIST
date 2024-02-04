@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import userImg from "../../assets/icons/user.svg";
 import FooterNav from "../../components/FooterNav/FooterNav";
+import backArrow from "../../assets/icons/backarrow.svg";
+import edit from "../../assets/icons/Edit.svg";
 
 const apiUrl = process.env.REACT_APP_URL;
 const port = process.env.REACT_APP_PORT;
@@ -38,42 +40,92 @@ const Profile = ({ user }) => {
   }
 
   return (
-    <main>
-      <h1>Your Profile Page</h1>
-      <section>
-        <div>
-          <img src={userImg} alt="user profile"></img>
-          <h2>{profile.first_name}</h2>
-        </div>
-        <div>
-          <h3>Volunteered</h3>
-          <div>
-            <p>{profile.total_opportunities}</p>
-            <p>times</p>
+    <main className="profile">
+      <div className="profile__back">
+        <Link className="profile__backlink" to={"/homepage"}>
+          <img src={backArrow} alt="back arrow" />
+        </Link>
+      </div>
+      <section className="profile__header">
+        <article className="profile__header-container">
+          <div className="profile__title-box">
+            <img
+              className="profile__pic"
+              src={userImg}
+              alt="user profile"
+            ></img>
+            <h1 className="profile__title">{`${profile.first_name}'s Profile Page`}</h1>{" "}
+            <Link to={"/edit-profile"}>
+              <img src={edit}></img>
+            </Link>
           </div>
-        </div>
-        <div>
-          <h3>Ongoing opportunities </h3>
-          <div>
-            <p>{profile.opportunities.length}</p>
-            <p>times</p>
+        </article>
+        <article className="profile__stats">
+          <h3 className="profile__stats-title">Stats</h3>
+          <div className="profile__stats-container">
+            <div className="profile__stat">
+              <h3 className="profile__subtitle">Volunteered</h3>
+              <div className="prfile__">
+                <p>{profile.total_opportunities}</p>
+              </div>
+            </div>
+            <div className="profile__stat">
+              <h3 className="profile__subtitle">Live opportunities </h3>{" "}
+              <div>
+                <p>{profile.opportunities.length}</p>
+              </div>
+            </div>
+            <div className="profile__stat">
+              <h3 className="profile__subtitle">Rating </h3>
+              <div>
+                <p>4.5*</p>
+              </div>
+            </div>
           </div>
-        </div>
+        </article>
       </section>
-      <section>
-        <h2>Reviews:</h2>
+      <section className="profile__reviews">
+        <h3>Reviews:</h3>
         <p>This volunteer was great 5 *</p>
       </section>
-      <section>
-        <h2>Bio:</h2>
+      <section className="profile__bio">
+        <div className="profile__section-header">
+          <h3>Bio:</h3>{" "}
+          <Link to={"/edit-profile"}>
+            <img
+              className="profile__edit-img"
+              src={edit}
+              alt="edit profile"
+            ></img>
+          </Link>
+        </div>
         <p>{profile.bio}</p>
       </section>
-      <section>
-        <h2>Experience:</h2>
-        <p>{profile.bio}</p>
+      <section className="profile__experience">
+        <div className="profile__section-header">
+          <h3>Experience:</h3>
+          <Link to={"/edit-profile"}>
+            <img
+              className="profile__edit-img"
+              src={edit}
+              alt="edit profile"
+            ></img>
+          </Link>
+        </div>
+        <p>
+          I have 12 years experience working as a volunteer mostly in the events
+          space.
+        </p>
+        <p>I am first aid qualified</p>
+        <p>
+          I have supervised volunteers at 4 sporting events including the london
+          marathon
+        </p>
       </section>
-      <button onClick={logOut}>log out</button>
-      <Link to={"/edit-profile"}>Edit Profile</Link>
+      <button className="profile__logout" onClick={logOut}>
+        log out
+      </button>
+
       <FooterNav />
     </main>
   );
