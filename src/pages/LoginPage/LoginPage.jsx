@@ -20,7 +20,6 @@ const LoginPage = () => {
           password: event.target.password.value,
         }
       );
-      console.log(response.data);
 
       sessionStorage.setItem("token", response.data.token);
       sessionStorage.setItem("user_id", response.data.id);
