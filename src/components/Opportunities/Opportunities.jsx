@@ -12,8 +12,8 @@ function Opportunity({ opportunities }) {
     return formattedTime;
   }
   return (
-    <section className="opportunity">
-      <ul className="opportunity__list">
+    <section className="opportunities">
+      <ul className="opportunities__list">
         {opportunities.map((opportunity) => {
           const formattedDate = new Date(
             opportunity.date_of_opportunity
@@ -23,19 +23,19 @@ function Opportunity({ opportunities }) {
             day: "numeric",
           });
           return (
-            <li key={opportunity.id} className="opportunity__card">
+            <li key={opportunity.id} className="opportunities__card">
               <Link
-                className="opportunity__link"
+                className="opportunities__link"
                 to={`/opportunity/${opportunity.id}`}
               >
-                <h2 className="opportunity__title">{opportunity.title}</h2>
-                <p className="opportunity__descpription">
+                <h2 className="opportunities__title">{opportunity.title}</h2>
+                <p className="opportunities__descpription">
                   {opportunity.description}
                 </p>
-                <div className="opportunity__details">
-                  <p className="opportunity__date">{formattedDate}</p>
-                  <div className="opportunity__container">
-                    <p className="opportunity__time">
+                <div className="opportunities__details">
+                  <p className="opportunities__date">{formattedDate}</p>
+                  <div className="opportunities__container">
+                    <p className="opportunities__time">
                       {`${timeFormatter(
                         opportunity.start_time_of_opportunity
                       )} to ${timeFormatter(

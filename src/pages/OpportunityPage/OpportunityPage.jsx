@@ -115,41 +115,70 @@ const OpportunityPage = () => {
 
   return (
     <>
-      <main>
-        <Link to={"/homepage"}>
-          <img src={backArrow} />
-        </Link>
-        <h1>{opportunity.title}</h1>
-        <p>{opportunity.description}</p>
-        <p>when:</p>
-        <p>
-          {new Date(opportunity.date_of_opportunity).toLocaleDateString(
-            "en-US",
-            {
-              year: "numeric",
-              month: "long",
-              day: "numeric",
-            }
-          )}
-        </p>
-        <p>{timeFormatter(opportunity.start_time_of_opportunity)}</p>
-        <p>to:</p>
-        <p>{timeFormatter(opportunity.end_time_of_opportunity)}</p>
-        <p>Number of volunteers needed:</p>
-        <p>{opportunity.number_of_volunteers_needed}</p>
-        <p>current volunteers:</p>
-        <ul>
-          {opportunity.cleanUsers.map((volunteer) => {
-            return <li key={volunteer.id}>{volunteer.first_name}</li>;
-          })}
-        </ul>
+      <main className="opportunity">
+        <div className="opportunity__back">
+          <Link className="opportunity__backlink" to={"/homepage"}>
+            <img src={backArrow} alt="back arrow" />
+          </Link>
+        </div>
+        <section className="opportunity__body">
+          <h1 className="opportunity__title">{opportunity.title}</h1>
+          <p className="opportunity__description">{opportunity.description}</p>
+          <div className="opportunity__details-container">
+            <p className="opportunity__subtitles">When:</p>
+            <p className="opportunity__date">
+              {new Date(opportunity.date_of_opportunity).toLocaleDateString(
+                "en-US",
+                {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                }
+              )}
+            </p>
+          </div>
+          <div className="opportunity__details-container">
+            <p className="opportunity__subtitles">From:</p>
+
+            <p className="opportunity__time">
+              {`${timeFormatter(
+                opportunity.start_time_of_opportunity
+              )} to ${timeFormatter(opportunity.end_time_of_opportunity)} `}
+            </p>
+          </div>
+          <div className="opportunity__volunteers">
+            <div className="opportunity__needed">
+              <p className="opportunity__subtitles">volunteers needed:</p>
+              <p className="opportunity__number-needed">
+                {opportunity.number_of_volunteers_needed}
+              </p>
+            </div>
+            <div className="opportunity__current">
+              <p className="opportunity__subtitles">current volunteers:</p>
+              <p className="opportunity__current-number">
+                {opportunity.cleanUsers.length}
+              </p>
+              <ul>
+                {opportunity.cleanUsers.map((volunteer) => {
+                  return <li key={volunteer.id}>{volunteer.first_name}</li>;
+                })}
+              </ul>
+            </div>
+          </div>
+        </section>
       </main>
-      <p>{!user ? "Must be signed in to Sign up or Save" : ""}</p>
+      <p>
+        {!user ? <Link to={"/"}>login in order to sign up or save</Link> : null}
+      </p>
       {user && (
-        <>
-          <button onClick={userOppSignUp}>sign up</button>
-          <button onClick={userOppSave}>save</button>
-        </>
+        <section className="opportunity__buttons">
+          <button className="opportunity__save" onClick={userOppSave}>
+            save
+          </button>
+          <button className="opportunity__signup" onClick={userOppSignUp}>
+            sign up
+          </button>
+        </section>
       )}
       <Link to={"/"}>{userLogin ? "Login" : ""}</Link>
     </>

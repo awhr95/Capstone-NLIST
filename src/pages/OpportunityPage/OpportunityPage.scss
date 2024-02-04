@@ -1,0 +1,76 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/vairables" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/resets" as *;
+
+.opportunity {
+  &__back {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem 1rem 0 0;
+  }
+  &__backlink {
+    border-bottom: 1px solid $primary-color-alternate;
+  }
+
+  &__body {
+    margin: 0 1rem;
+  }
+
+  &__title {
+    font-size: 3rem;
+    border-bottom: 1px solid $primary-color-alternate;
+  }
+  &__description {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid $primary-font-color;
+  }
+  &__details-container {
+    display: flex;
+    align-items: baseline;
+  }
+
+  &__subtitles {
+    padding-right: 1rem;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  &__time {
+    text-transform: lowercase;
+  }
+
+  &__volunteers {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__needed {
+    width: 45%;
+  }
+  &__current {
+    width: 45%;
+  }
+  &__buttons {
+    display: flex;
+    justify-content: space-evenly;
+  }
+  &__signup {
+    background-color: $primary-color-alternate;
+    border-radius: 5px;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    width: 8rem;
+    height: 2rem;
+  }
+  &__save {
+    background-color: $primary-color;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    width: 8rem;
+    height: 2rem;
+  }
+}
