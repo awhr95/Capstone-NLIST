@@ -25,8 +25,6 @@ The app will be broken into two 'sides' one to browse and sign up to volunteer o
 ### Features
 
 - As a user, I want to be able to find volunteering opportunities close to me.
-- As a user, I want to be able to 'vet' volunteering opportunities by seeing information about the opportunity, reviews and feedback from other users
-- As a user, I want to be able communicate with the 'owner' of a volunteering opportunity i.e. ask questions & clarifications
 - As a user, I want to be able to log in and view my account information
 - As a user, I want to be able to provide details on my account to let prospective volunteer groups know about me i.e user bio, previous experience, any relevent qualifications DBS checks etc
 - As a user, I want to be able filter volunteer opportunities to my needs i.e. large charities, sporting events local community projects
@@ -34,10 +32,6 @@ The app will be broken into two 'sides' one to browse and sign up to volunteer o
 - As a user, I want to be able to track my reviews and scores to build a profile that is more attractive to prospective volunteer opportunities.
 
 - As a page owner, I want to be able to list the key requirements of the volunteer opportunity. i.e. time location, description number of volunteers.
-- As a page owner, I want to be able to communicate with volunteers that have signed up.
-- As a page owner, I want to be 'vet' and accept reject volunteers
-- As a page owner, I want to be able to set a limit on number of volunteers that is visible on my page.
-- As a page owner, I want to be able to set a limit on number of volunteers that is visible on my page.
 - As a page owner, I want to be able to set a limit on number of volunteers that is visible on my page.
 
 ## Implementation
@@ -194,7 +188,10 @@ Scope your project as a sprint. Break down the tasks that will need to be comple
   - create POST for new opportunities
 
 ## Nice-to-haves
-
+- As a user, I want to be able to 'vet' volunteering opportunities by seeing information about the opportunity, reviews and feedback from other users
+- As a user, I want to be able communicate with the 'owner' of a volunteering opportunity i.e. ask questions & clarifications
+- As a page owner, I want to be able to communicate with volunteers that have signed up.
+- As a page owner, I want to be 'vet' and accept reject volunteers
 Your project will be marked based on what you committed to in the above document. Under nice-to-haves, you can list any additional features you may complete if you have extra time, or after finishing.
 
 - map feature for where opportunities are location.
