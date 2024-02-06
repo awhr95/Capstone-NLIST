@@ -3,8 +3,22 @@
 @use "../../styles/partials/typography" as *;
 @use "../../styles/partials/resets" as *;
 
+.map {
+  &__page {
+    display: flex;
+    height: 100vh;
+  }
+
+  &__list-container {
+    width: 50%;
+  }
+  &__container {
+    width: 50%;
+  }
+}
+
 .map-container {
-  height: 500px;
+  height: 100%;
 }
 
 .sidebar {
