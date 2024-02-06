@@ -20,11 +20,13 @@ const apiUrl = process.env.REACT_APP_URL;
 const port = process.env.REACT_APP_PORT;
 const userId = sessionStorage.getItem("user_id");
 
-const OpportunityPage = () => {
+const OpportunityPage = ({ setUser, user }) => {
   const [opportunity, setOpportunity] = useState(null);
-  const [user, setUser] = useState(null);
+  const [oppUser, setOppUser] = useState(null);
   const [userLogin, setUserLogin] = useState(false);
   const { opportunityId } = useParams();
+  const [failedAuth, setFailedAuth] = useState(false);
+
   const notifySave = () =>
     toast.success("Saved for later!", {
       position: "top-right",
@@ -82,11 +84,20 @@ const OpportunityPage = () => {
   };
 
   const fetchUser = async () => {
+    const token = sessionStorage.getItem("token");
+    if (!token) {
+      return setFailedAuth(true);
+    }
     try {
       const response = await axios.get(
-        `${apiUrl}:${port}/users/saved/${userId}`
+        `${apiUrl}:${port}/users/saved/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
-      setUser(response.data);
+      setOppUser(response.data);
     } catch (error) {
       console.error(error.message);
     }
@@ -135,8 +146,7 @@ const OpportunityPage = () => {
       user_id: userId,
       opportunities_id: opportunityId,
     };
-
-    const alreadySaved = user.savedOpportunities.map((opp) => {
+    const alreadySaved = oppUser.savedOpportunities.map((opp) => {
       return opp.id;
     });
 

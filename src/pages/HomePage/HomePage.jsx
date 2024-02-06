@@ -6,7 +6,7 @@ import FooterNav from "../../components/FooterNav/FooterNav";
 import Opportunity from "../../components/Opportunities/Opportunities";
 import FilterMenu from "../../components/FilterMenu/FilerMenu";
 
-function HomePage() {
+function HomePage({ setUser, user }) {
   const apiUrl = process.env.REACT_APP_URL;
   const port = process.env.REACT_APP_PORT;
 
@@ -37,7 +37,11 @@ function HomePage() {
     <>
       <Header />
       <FilterMenu />
-      <Opportunity opportunities={allOpportunities} />
+      <Opportunity
+        setUser={setUser}
+        user={user}
+        opportunities={allOpportunities}
+      />
       <FooterNav />
     </>
   );

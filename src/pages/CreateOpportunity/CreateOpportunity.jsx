@@ -14,6 +14,8 @@ const port = process.env.REACT_APP_PORT;
 const CreateOpportunity = () => {
   const navigate = useNavigate();
   const [error, setError] = useState({});
+  const [failedAuth, setFailedAuth] = useState(false);
+
   const user = sessionStorage.getItem("user_id");
   const notify = () =>
     toast.success("Listing Created!", {
@@ -69,7 +71,6 @@ const CreateOpportunity = () => {
     e.preventDefault();
 
     const createdOpp = {
-      user_id: user,
       title: formFields.title,
       description: formFields.description,
       type: formFields.type,
@@ -85,12 +86,22 @@ const CreateOpportunity = () => {
         navigate("/");
       }, 5000);
       try {
+        const token = sessionStorage.getItem("token");
+        if (!token) {
+          return setFailedAuth(true);
+        }
         await axios.post(
           `${apiUrl}:${port}/opportunities/create-opportunity`,
-          createdOpp
+          createdOpp,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
         );
       } catch (error) {
         console.log({ error: error.message });
+        setFailedAuth(true);
       }
     }
   };

@@ -10,26 +10,42 @@ import edit from "../../assets/icons/Edit.svg";
 const apiUrl = process.env.REACT_APP_URL;
 const port = process.env.REACT_APP_PORT;
 
-const Profile = ({ user }) => {
+const Profile = ({ user, setUser }) => {
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
-
-  const foundUser = sessionStorage.getItem("user_id");
-
-  const fetchProfile = async () => {
-    try {
-      const response = await axios.get(`${apiUrl}:${port}/users/${foundUser}`);
-      setProfile(response.data);
-    } catch (error) {}
-  };
+  const [failedAuth, setFailedAuth] = useState(false);
 
   useEffect(() => {
+    const fetchProfile = async () => {
+      const foundUser = sessionStorage.getItem("user_id");
+      const token = sessionStorage.getItem("token");
+      if (!token) {
+        return setFailedAuth(true);
+      }
+      try {
+        const { data } = await axios.get(
+          `${apiUrl}:${port}/users/${foundUser}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setProfile(data);
+      } catch (error) {
+        setFailedAuth(true);
+        console.error(error.message);
+      }
+    };
+
     fetchProfile();
   }, []);
 
   function logOut() {
     sessionStorage.removeItem("user_id");
     sessionStorage.removeItem("token");
+    setUser(null);
+    setFailedAuth(true);
     setTimeout(() => {
       navigate("/");
     }, 500);

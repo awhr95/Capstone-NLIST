@@ -5,7 +5,7 @@ import axios from "axios";
 import { useState } from "react";
 import nlistLogo from "../../assets/logos/NList-logos.jpeg";
 
-const LoginPage = () => {
+const LoginPage = ({ setUser }) => {
   const navigate = useNavigate();
 
   const [error, setError] = useState("");
@@ -42,6 +42,7 @@ const LoginPage = () => {
 
         sessionStorage.setItem("token", response.data.token);
         sessionStorage.setItem("user_id", response.data.id);
+        setUser(response.data.id);
 
         navigate("/");
       } catch (error) {
@@ -66,7 +67,7 @@ const LoginPage = () => {
         <button type="submit" className="login__button">
           Log in
         </button>
-        {error && <div className="login__message">{error}</div>}
+        {error && <div className="login__message">{error.email}</div>}
       </form>
       <section className="login__links">
         <Link className="login__signup-link" to="/signup">

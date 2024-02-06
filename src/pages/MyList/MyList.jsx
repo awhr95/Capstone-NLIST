@@ -11,12 +11,21 @@ function MyList() {
   const port = process.env.REACT_APP_PORT;
 
   const [myOpportunities, setMyOpportunities] = useState(null);
-  const user = sessionStorage.getItem("user_id");
+  const [failedAuth, setFailedAuth] = useState(false);
 
   const fetchOpportunities = async () => {
+    const user = sessionStorage.getItem("user_id");
+    const token = sessionStorage.getItem("token");
+    if (!token) {
+      return setFailedAuth(true);
+    }
     try {
-      const response = await axios.get(`${apiUrl}:${port}/users/${user}`);
-      setMyOpportunities(response.data);
+      const { data } = await axios.get(`${apiUrl}:${port}/users/${user}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setMyOpportunities(data);
     } catch (error) {
       console.error(error.message);
     }
@@ -26,8 +35,12 @@ function MyList() {
     fetchOpportunities();
   }, []);
 
+  if (failedAuth) {
+    return <p>hello</p>;
+  }
+
   if (!myOpportunities) {
-    return <p>Loading...</p>;
+    return <p>loading...</p>;
   }
 
   return (

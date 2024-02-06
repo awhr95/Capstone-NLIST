@@ -9,16 +9,29 @@ import FilterMenu from "../../components/FilterMenu/FilerMenu";
 function SavedList() {
   const apiUrl = process.env.REACT_APP_URL;
   const port = process.env.REACT_APP_PORT;
-
+  const [failedAuth, setFailedAuth] = useState(false);
   const [savedOpportunities, setSavedOpportunities] = useState(null);
   const user = sessionStorage.getItem("user_id");
 
   const fetchSavedOpportunities = async () => {
+    const foundUser = sessionStorage.getItem("user_id");
+    const token = sessionStorage.getItem("token");
+    if (!token) {
+      return setFailedAuth(true);
+    }
     try {
-      const response = await axios.get(`${apiUrl}:${port}/users/saved/${user}`);
-      setSavedOpportunities(response.data);
+      const { data } = await axios.get(
+        `${apiUrl}:${port}/users/saved/${user}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      setSavedOpportunities(data);
     } catch (error) {
       console.error(error.message);
+      setFailedAuth(true);
     }
   };
 

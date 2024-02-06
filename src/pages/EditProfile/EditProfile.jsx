@@ -13,6 +13,8 @@ const EditProfile = () => {
   const [error, setError] = useState({});
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
+  const [failedAuth, setFailedAuth] = useState(false);
+
   const foundUser = sessionStorage.getItem("user_id");
   const notifySuccess = () =>
     toast.success("Changes Made!", {
@@ -38,10 +40,21 @@ const EditProfile = () => {
     });
 
   const fetchProfile = async () => {
+    const token = sessionStorage.getItem("token");
+    if (!token) {
+      return setFailedAuth(true);
+    }
     try {
-      const response = await axios.get(`${apiUrl}:${port}/users/${foundUser}`);
-      setProfile(response.data);
-    } catch (error) {}
+      const { data } = await axios.get(`${apiUrl}:${port}/users/${foundUser}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setProfile(data);
+    } catch (error) {
+      console.error({ error: error.message });
+      return setFailedAuth(true);
+    }
   };
 
   useEffect(() => {
@@ -86,9 +99,19 @@ const EditProfile = () => {
     };
 
     if (isFormValid()) {
+      const foundUser = sessionStorage.getItem("user_id");
+      const token = sessionStorage.getItem("token");
+      if (!token) {
+        return setFailedAuth(true);
+      }
       await axios.put(
         `${apiUrl}:${port}/users/account/${foundUser}`,
-        editedElement
+        editedElement,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       notifySuccess();
 

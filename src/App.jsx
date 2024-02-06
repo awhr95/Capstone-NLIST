@@ -20,6 +20,7 @@ import Community from "./pages/Community/Community";
 
 function App() {
   const [user, setUser] = useState(null);
+  console.log(user);
 
   useEffect(() => {
     const foundUser = sessionStorage.getItem("user_id");
@@ -29,11 +30,14 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage setUser={setUser} />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/profile" element={<Profile user={user} />} />
+        <Route
+          path="/profile"
+          element={<Profile setUser={setUser} user={user} />}
+        />
         <Route path="/edit-profile" element={<EditProfile user={user} />} />
-        <Route path="/" element={<HomePage />} />
+        <Route path="/" element={<HomePage setUser={setUser} user={user} />} />
         <Route path="/mylist" element={<MyList />} />
         <Route path="/saved" element={<SavedList />} />
         <Route path="/charities" element={<Charities />} />
@@ -44,7 +48,7 @@ function App() {
         <Route path="/community" element={<Community />} />
         <Route
           path="/opportunity/:opportunityId"
-          element={<OpportunityPage />}
+          element={<OpportunityPage setUser={setUser} user={user} />}
         />
         <Route path="/create-listing" element={<CreateOpportunity />} />
       </Routes>
