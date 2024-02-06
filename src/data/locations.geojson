@@ -1,0 +1,335 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Save the Children",
+        "description": "Save the Children is a UK charity for children that works in over 100 countries to make sure children are fed, learning and treated fairly. "
+      },
+      "geometry": {
+        "coordinates": [-0.13207, 51.46437],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Litter Picking - Littlebury Rd",
+        "description": "Community group litter picking on saturday mornings, come and join! Equipment provided!"
+      },
+      "geometry": {
+        "coordinates": [-0.13498, 51.46597],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "London Food Bank Assistance",
+        "description": "Help distribute food to those in need at the London Food Bank. Volunteers needed to sort and pack food items."
+      },
+      "geometry": {
+        "coordinates": [-0.15484, 51.47367],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Greenwich Park Cleanup",
+        "description": "Join us in keeping Greenwich Park clean and green. A community effort to maintain the beauty of our local park."
+      },
+      "geometry": {
+        "coordinates": [0.0017657, 51.4748973],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Supporting Elderly - Shopping Assistance",
+        "description": "Volunteers needed to assist elderly residents with grocery shopping. Make a positive impact in the lives of seniors."
+      },
+      "geometry": {
+        "coordinates": [-0.13596, 51.46232],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Thames River Cleanup",
+        "description": "Join the Thames River Cleanup initiative. Help remove plastic and debris from the riverbanks to protect the environment."
+      },
+      "geometry": {
+        "coordinates": [-0.147014, 51.481834],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Local Community Garden Planting",
+        "description": "Contribute to the beauty of your community by joining the community garden planting event. All ages welcome!"
+      },
+      "geometry": {
+        "coordinates": [0.050839, 51.343366],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "London Marathon Water Station Volunteers",
+        "description": "Be part of the London Marathon support team! Volunteer at a water station and cheer on the runners."
+      },
+      "geometry": {
+        "coordinates": [-0.082116, 51.50142],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Hackney Homeless Shelter Assistance",
+        "description": "Help provide warmth and support to the homeless in Hackney. Volunteers needed for evening shelter assistance."
+      },
+      "geometry": {
+        "coordinates": [-0.07115, 51.54695],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Community Library Reading Program",
+        "description": "Support literacy in your community by volunteering for the library's reading program. Help children discover the joy of reading."
+      },
+      "geometry": {
+        "coordinates": [-0.11058, 51.49301],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "City Farm Animal Care",
+        "description": "Spend a day at the city farm caring for animals. Volunteers needed for feeding and cleaning tasks."
+      },
+      "geometry": {
+        "coordinates": [-0.1191, 51.48711],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Charity Shop Sorting and Organizing",
+        "description": "Join a local charity shop and help sort and organize donated items. All proceeds support community initiatives."
+      },
+      "geometry": {
+        "coordinates": [-0.11562, 51.46208],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Art Workshop for Homeless Youth",
+        "description": "Support a creative workshop for homeless youth in London. Volunteers needed to assist with art projects."
+      },
+      "geometry": {
+        "coordinates": [-0.10863, 51.49294],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Cancer Research Charity Run",
+        "description": "Participate in a charity run to raise funds for cancer research. Volunteers needed for event coordination and support."
+      },
+      "geometry": {
+        "coordinates": [-0.1385335, 51.5083315],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Battersea Animal Shelter Adoption Event",
+        "description": "Help find loving homes for animals at the Battersea Animal Shelter. Volunteers needed for adoption event assistance."
+      },
+      "geometry": {
+        "coordinates": [-0.14486, 51.47867],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Community Beach Cleanup",
+        "description": "Join the community beach cleanup and help keep our shores clean. Gloves and bags provided!"
+      },
+      "geometry": {
+        "coordinates": [-0.1473, 50.82155],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Youth Sports Coaching",
+        "description": "Volunteer as a youth sports coach and inspire the next generation of athletes."
+      },
+      "geometry": {
+        "coordinates": [-0.1067825, 51.4508655],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Community Garden Harvest Festival",
+        "description": "Celebrate the harvest season at the community garden festival. Volunteers needed for setup and assistance."
+      },
+      "geometry": {
+        "coordinates": [-0.138276, 51.449037],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Tech Workshop for Seniors",
+        "description": "Assist seniors in learning basic technology skills at the local community center."
+      },
+      "geometry": {
+        "coordinates": [-0.139392, 51.461276],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Environmental Science Fair",
+        "description": "Support the environmental science fair for local schools. Judges and event assistants needed."
+      },
+      "geometry": {
+        "coordinates": [-0.07621, 51.48556],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Community Orchestra Concert",
+        "description": "Volunteer for the community orchestra concert. Ushers and event coordinators needed."
+      },
+      "geometry": {
+        "coordinates": [-0.1202, 51.49505],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Nature Trail Cleanup",
+        "description": "Maintain the local nature trail by participating in a cleanup day. Bring comfortable shoes!"
+      },
+      "geometry": {
+        "coordinates": [-0.19292, 51.6059],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Youth Coding Workshop",
+        "description": "Teach basic coding skills to youth at the community center. No coding experience required!"
+      },
+      "geometry": {
+        "coordinates": [-0.068176, 51.469534],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Animal Shelter Pet Adoption Day",
+        "description": "Assist at the local animal shelter's pet adoption day. Help find homes for furry friends."
+      },
+      "geometry": {
+        "coordinates": [-0.14486, 51.47867],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Mental Health Awareness Seminar",
+        "description": "Support a mental health awareness seminar. Ushers and event coordinators needed."
+      },
+      "geometry": {
+        "coordinates": [-0.21774, 51.48685],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Community Book Club Meeting",
+        "description": "Join the community book club meeting as a discussion facilitator or event organizer."
+      },
+      "geometry": {
+        "coordinates": [-0.11001, 51.4706],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Elderly Care Assistance Day",
+        "description": "Provide assistance and companionship to elderly residents at the local care center."
+      },
+      "geometry": {
+        "coordinates": [-0.12721, 51.45488],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Youth Theatre Production",
+        "description": "Support a youth theatre production. Ushers and backstage assistants needed."
+      },
+      "geometry": {
+        "coordinates": [-0.11054, 51.4593],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Local Food Bank Sorting Day",
+        "description": "Volunteer at the local food bank to sort and organize donated food items."
+      },
+      "geometry": {
+        "coordinates": [-0.18559, 51.44011],
+        "type": "Point"
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "title": "Community Yoga in the Park",
+        "description": "Join the community yoga session in the park. Yoga instructors and assistants needed."
+      },
+      "geometry": {
+        "coordinates": [-0.17259, 51.4505],
+        "type": "Point"
+      }
+    }
+  ],
+  "type": "FeatureCollection"
+}

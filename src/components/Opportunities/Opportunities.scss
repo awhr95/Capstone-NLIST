@@ -1,0 +1,57 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/vairables" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/resets" as *;
+
+.opportunities {
+  &__list {
+    margin: 1rem;
+    padding: 0;
+  }
+  &__empty {
+    margin: 1rem;
+    padding: 0;
+  }
+
+  &__card {
+    list-style-type: none;
+    color: $primary-font-color;
+    border: 1px solid $primary-color-alternate;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+    padding: 0 0.5rem;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $primary-font-color;
+  }
+
+  &__title {
+    color: black;
+  }
+  &__details {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  &__container {
+    display: flex;
+
+    width: 50%;
+    justify-content: space-between;
+  }
+  &__subtitle {
+    font-size: 0.8rem;
+  }
+  &__time {
+    font-size: 0.8rem;
+  }
+
+  &__date {
+    font-size: 0.8rem;
+    padding-right: 1rem;
+  }
+}

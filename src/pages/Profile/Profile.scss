@@ -1,0 +1,71 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/vairables" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/resets" as *;
+
+.profile {
+  margin: 1rem;
+  &__back {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 1rem;
+  }
+  &__backlink {
+    border-bottom: 1px solid $primary-color-alternate;
+  }
+
+  &__title {
+    font-size: 1.5rem;
+  }
+
+  &__title-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid $primary-color-alternate;
+  }
+  &__stats {
+    border-bottom: 1px solid $primary-font-color;
+  }
+
+  &__stats-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  &__stats-title {
+    margin-bottom: 0;
+  }
+  &__edit-img {
+    padding-top: 1rem;
+  }
+
+  &__stat {
+    width: 45%;
+  }
+
+  &__subtitle {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+  &__section-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  &__reviews {
+    border-bottom: 1px solid $primary-font-color;
+  }
+  &__bio {
+    border-bottom: 1px solid $primary-font-color;
+  }
+  &__logout {
+    background-color: $primary-color-alternate;
+    border-radius: 5px;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    width: 8rem;
+    height: 2rem;
+  }
+}

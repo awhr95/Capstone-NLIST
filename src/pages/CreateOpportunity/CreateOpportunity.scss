@@ -1,0 +1,78 @@
+@use "../../styles/partials/breakpoints" as *;
+@use "../../styles/partials/vairables" as *;
+@use "../../styles/partials/typography" as *;
+@use "../../styles/partials/resets" as *;
+
+.create-op {
+  margin: 1rem;
+
+  &__back {
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 1rem;
+  }
+  &__backlink {
+    border-bottom: 1px solid $primary-color-alternate;
+  }
+  &__title {
+    border-bottom: 1px solid $primary-color-alternate;
+  }
+  &__form {
+    display: flex;
+    flex-direction: column;
+  }
+  &__label {
+    padding-top: 1rem;
+    color: $primary-font-color;
+  }
+  &__input {
+    outline: none;
+    border: none;
+    padding: 0.5rem 0 0.5rem 0.5rem;
+    border-bottom: 1px solid $primary-color-alternate;
+    &:focus {
+      border: 1px solid $primary-color-alternate;
+    }
+    ::placeholder {
+      color: $primary-color-alternate;
+    }
+    &--error {
+      border: 1px solid red;
+    }
+  }
+
+  &__number {
+    width: 8rem;
+  }
+  &__description {
+    height: 3rem;
+  }
+  &__buttons {
+    padding-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__submit {
+    background-color: $primary-color-alternate;
+    border-radius: 5px;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    width: 10rem;
+    height: 2rem;
+  }
+  &__cancel {
+    background-color: white;
+    color: $primary-font-color;
+    border: 1px solid $primary-color-alternate;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    width: 10rem;
+    height: 2rem;
+    margin-top: 1rem;
+  }
+  //   &__text
+}
