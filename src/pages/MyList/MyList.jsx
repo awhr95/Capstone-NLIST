@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import FooterNav from "../../components/FooterNav/FooterNav";
 import Opportunity from "../../components/Opportunities/Opportunities";
 import FilterMenu from "../../components/FilterMenu/FilerMenu";
+import FailedAuth from "../../components/FailedAuth/FailedAuth";
 
 function MyList() {
   const apiUrl = process.env.REACT_APP_URL;
@@ -36,11 +37,16 @@ function MyList() {
   }, []);
 
   if (failedAuth) {
-    return <p>hello</p>;
+    return <FailedAuth />;
   }
 
   if (!myOpportunities) {
-    return <p>loading...</p>;
+    return (
+      <>
+        <Header />
+        <FilterMenu />
+      </>
+    );
   }
 
   return (

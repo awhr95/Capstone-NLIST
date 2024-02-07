@@ -1,27 +1,56 @@
 import "./Nav.scss";
-import { NavLink } from "react-router-dom";
 
-function Nav() {
+function Nav({ setOppType }) {
   return (
     <nav className="nav">
-      <NavLink to="/" className={"nav__links"}>
+      <button
+        onClick={() => {
+          setOppType(null);
+        }}
+        className={"nav__links"}
+      >
         Home
-      </NavLink>
-      <NavLink to="/charities" className={"nav__links"}>
+      </button>
+      <button
+        onClick={() => {
+          setOppType("Charity");
+        }}
+        className={"nav__links"}
+      >
         Charities
-      </NavLink>
-      <NavLink to="/events" className={"nav__links"}>
+      </button>
+      <button
+        onClick={() => {
+          setOppType("Event");
+        }}
+        className={"nav__links"}
+      >
         Events
-      </NavLink>
-      <NavLink to="/community" className={"nav__links"}>
+      </button>
+      <button
+        onClick={() => {
+          setOppType("Community");
+        }}
+        className={"nav__links"}
+      >
         Community
-      </NavLink>
-      <NavLink to="/individual" className={"nav__links"}>
+      </button>
+      <button
+        onClick={() => {
+          setOppType("Individual");
+        }}
+        className={"nav__links"}
+      >
         Individual
-      </NavLink>
-      <NavLink to="/one-off" className={"nav__links"}>
+      </button>
+      <button
+        onClick={() => {
+          setOppType("One-off");
+        }}
+        className={"nav__links"}
+      >
         One-Off
-      </NavLink>
+      </button>
     </nav>
   );
 }

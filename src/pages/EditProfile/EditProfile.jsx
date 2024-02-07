@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import backArrow from "../../assets/icons/backarrow.svg";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Header from "../../components/Header/Header";
+import FailedAuth from "../../components/FailedAuth/FailedAuth";
 
 const apiUrl = process.env.REACT_APP_URL;
 const port = process.env.REACT_APP_PORT;
@@ -67,19 +67,7 @@ const EditProfile = () => {
   };
 
   if (!profile || failedAuth) {
-    return (
-      <section>
-        <Header />
-        <FilterMenu />
-        <section className="opportunities__card">
-          <h2>You must be logged in to view this page</h2>
-          <Link className="opportunity__login" to={"/login"}>
-            login in to sign up or save
-          </Link>
-        </section>
-        <FooterNav />
-      </section>
-    );
+    return <FailedAuth />;
   }
   const isFormValid = () => {
     if (!profile.user_name) {

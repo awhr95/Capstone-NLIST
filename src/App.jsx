@@ -11,15 +11,12 @@ import Profile from "./pages/Profile/Profile";
 import EditProfile from "./pages/EditProfile/EditProfile";
 import MyList from "./pages/MyList/MyList";
 import SavedList from "./pages/SavedList/SavedList";
-import Charities from "./pages/Charities/Charities";
-import Events from "./pages/Events/Events";
-import Individual from "./pages/Individual/Individual";
-import OneOff from "./pages/OneOff/OneOff";
 import OppMap from "./pages/OppMapp/OppMap";
-import Community from "./pages/Community/Community";
 
 function App() {
   const [user, setUser] = useState(null);
+  const [oppType, setOppType] = useState(null);
+
   console.log(user);
 
   useEffect(() => {
@@ -34,18 +31,25 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route
           path="/profile"
-          element={<Profile setUser={setUser} user={user} />}
+          element={
+            <Profile setOppType={setOppType} setUser={setUser} user={user} />
+          }
         />
         <Route path="/edit-profile" element={<EditProfile user={user} />} />
-        <Route path="/" element={<HomePage setUser={setUser} user={user} />} />
+        <Route
+          path="/"
+          element={
+            <HomePage
+              setOppType={setOppType}
+              oppType={oppType}
+              setUser={setUser}
+              user={user}
+            />
+          }
+        />
         <Route path="/mylist" element={<MyList />} />
         <Route path="/saved" element={<SavedList />} />
-        <Route path="/charities" element={<Charities />} />
-        <Route path="/events" element={<Events />} />
-        <Route path="/individual" element={<Individual />} />
-        <Route path="/one-off" element={<OneOff />} />
         <Route path="/map" element={<OppMap />} />
-        <Route path="/community" element={<Community />} />
         <Route
           path="/opportunity/:opportunityId"
           element={<OpportunityPage setUser={setUser} user={user} />}

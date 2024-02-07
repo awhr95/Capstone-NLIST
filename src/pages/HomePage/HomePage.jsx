@@ -6,7 +6,7 @@ import FooterNav from "../../components/FooterNav/FooterNav";
 import Opportunity from "../../components/Opportunities/Opportunities";
 import FilterMenu from "../../components/FilterMenu/FilerMenu";
 
-function HomePage({ setUser, user }) {
+function HomePage({ setUser, user, setOppType, oppType }) {
   const apiUrl = process.env.REACT_APP_URL;
   const port = process.env.REACT_APP_PORT;
 
@@ -36,8 +36,9 @@ function HomePage({ setUser, user }) {
   return (
     <>
       <Header />
-      <FilterMenu />
+      <FilterMenu oppType={oppType} setOppType={setOppType} />
       <Opportunity
+        oppType={oppType}
         setUser={setUser}
         user={user}
         opportunities={allOpportunities}

@@ -4,7 +4,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import backArrow from "../../assets/icons/backarrow.svg";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import { notifySuccess, notifyInfo, notifyError } from "../../utils/utils";
 import "react-toastify/dist/ReactToastify.css";
 
 function timeFormatter(timeString) {
@@ -26,51 +27,6 @@ const OpportunityPage = ({ setUser, user }) => {
   const [userLogin, setUserLogin] = useState(false);
   const { opportunityId } = useParams();
   const [failedAuth, setFailedAuth] = useState(false);
-
-  const notifySave = () =>
-    toast.success("Saved for later!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  const notifySignup = () =>
-    toast.success("Signed up!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  const notifyAlreadySignedUp = () =>
-    toast.info("Already signed up!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  const notifyAlreadySaved = () =>
-    toast.info("Already saved!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
 
   const fetchOpportunity = async () => {
     try {
@@ -108,7 +64,7 @@ const OpportunityPage = ({ setUser, user }) => {
   }, []);
 
   const userOppSignUp = async () => {
-    if (!userId) {
+    if (failedAuth) {
       setUserLogin(true);
       return;
     }
@@ -120,9 +76,10 @@ const OpportunityPage = ({ setUser, user }) => {
     const volunteerIds = opportunity.cleanUsers.map((volunteer) => {
       return volunteer.id;
     });
+    console.log(volunteerIds);
 
     if (volunteerIds.includes(Number(userId))) {
-      notifyAlreadySignedUp();
+      notifyInfo("Already Signed Up!");
       return;
     }
 
@@ -131,7 +88,7 @@ const OpportunityPage = ({ setUser, user }) => {
         `${apiUrl}:${port}/opportunities/signup/${opportunityId}`,
         newRecord
       );
-      notifySignup();
+      notifySuccess("Signed up!");
       fetchOpportunity();
     } catch (error) {
       console.error(error.message);
@@ -139,19 +96,23 @@ const OpportunityPage = ({ setUser, user }) => {
   };
 
   const userOppSave = async () => {
-    if (!userId) {
-      return;
-    }
+    // if (!userId) {
+    //   return;
+    // }
+    console.log("hello");
     const newRecord = {
       user_id: userId,
       opportunities_id: opportunityId,
     };
+
     const alreadySaved = oppUser.savedOpportunities.map((opp) => {
+      console.log("map function");
       return opp.id;
     });
 
     if (alreadySaved.includes(Number(opportunityId))) {
-      notifyAlreadySaved();
+      console.log("already saved");
+      notifyInfo("Already Saved!");
       return;
     }
 
@@ -160,9 +121,10 @@ const OpportunityPage = ({ setUser, user }) => {
         `${apiUrl}:${port}/opportunities/save/${opportunityId}`,
         newRecord
       );
-      notifySave();
+      notifySuccess("Saved!");
       fetchOpportunity();
     } catch (error) {
+      notifyError("Error on saving");
       console.error(error.message);
     }
   };
@@ -226,9 +188,16 @@ const OpportunityPage = ({ setUser, user }) => {
         </section>
       </main>
 
-      <Link className="opportunity__login" to={"/login"}>
-        {!user ? "login in to sign up or save" : null}
-      </Link>
+      <section className="opportunity__login-container">
+        <Link className="opportunity__link" to={"/login"}>
+          {!user ? (
+            <p className="opportunity__login">
+              {" "}
+              login in to sign up to opportunity
+            </p>
+          ) : null}
+        </Link>
+      </section>
 
       {user && (
         <section className="opportunity__buttons">

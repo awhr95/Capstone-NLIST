@@ -6,11 +6,12 @@ import userImg from "../../assets/icons/user.svg";
 import FooterNav from "../../components/FooterNav/FooterNav";
 import backArrow from "../../assets/icons/backarrow.svg";
 import edit from "../../assets/icons/Edit.svg";
+import FailedAuth from "../../components/FailedAuth/FailedAuth";
 
 const apiUrl = process.env.REACT_APP_URL;
 const port = process.env.REACT_APP_PORT;
 
-const Profile = ({ user, setUser }) => {
+const Profile = ({ user, setUser, setOppType }) => {
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
   const [failedAuth, setFailedAuth] = useState(false);
@@ -51,8 +52,8 @@ const Profile = ({ user, setUser }) => {
     }, 500);
   }
 
-  if (!profile) {
-    return <p>Loading...</p>;
+  if (!profile || failedAuth) {
+    return <FailedAuth setOppType={setOppType} />;
   }
 
   return (

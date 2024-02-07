@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import FooterNav from "../../components/FooterNav/FooterNav";
 import Opportunity from "../../components/Opportunities/Opportunities";
 import FilterMenu from "../../components/FilterMenu/FilerMenu";
+import FailedAuth from "../../components/FailedAuth/FailedAuth";
 
 function SavedList() {
   const apiUrl = process.env.REACT_APP_URL;
@@ -38,6 +39,10 @@ function SavedList() {
   useEffect(() => {
     fetchSavedOpportunities();
   }, []);
+
+  if (failedAuth) {
+    return <FailedAuth />;
+  }
 
   if (!savedOpportunities) {
     return <p>Loading...</p>;
