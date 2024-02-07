@@ -15,7 +15,7 @@ import OppMap from "./pages/OppMapp/OppMap";
 
 function App() {
   const [user, setUser] = useState(null);
-  const [oppType, setOppType] = useState(null);
+  const [opportunityType, setOpportunityType] = useState(null);
 
   console.log(user);
 
@@ -31,24 +31,35 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route
           path="/profile"
-          element={
-            <Profile setOppType={setOppType} setUser={setUser} user={user} />
-          }
+          element={<Profile setUser={setUser} user={user} />}
         />
         <Route path="/edit-profile" element={<EditProfile user={user} />} />
         <Route
           path="/"
           element={
             <HomePage
-              setOppType={setOppType}
-              oppType={oppType}
               setUser={setUser}
               user={user}
+              oppType={opportunityType}
+              setOppType={setOpportunityType}
+            />
+          }
+        />
+        <Route
+          path={"/:oppType"}
+          element={
+            <HomePage
+              setUser={setUser}
+              user={user}
+              oppType={opportunityType}
+              setOppType={setOpportunityType}
             />
           }
         />
         <Route path="/mylist" element={<MyList />} />
+        <Route path="/mylist/:oppType" element={<MyList />} />
         <Route path="/saved" element={<SavedList />} />
+        <Route path="/saved/:oppType" element={<SavedList />} />
         <Route path="/map" element={<OppMap />} />
         <Route
           path="/opportunity/:opportunityId"

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import map from "../../assets/icons/Map.svg";
 import Nav from "../../components/Nav/Nav";
 
-function FilterMenu({ setOppType }) {
+function FilterMenu({ page }) {
   return (
     <section>
       <div className="search">
@@ -16,7 +16,7 @@ function FilterMenu({ setOppType }) {
           <img src={map} alt="filters" className="header__img--alt" />
         </Link>
       </div>
-      <Nav setOppType={setOppType} />
+      <Nav page={page} />
     </section>
   );
 }

@@ -6,6 +6,7 @@ import FooterNav from "../../components/FooterNav/FooterNav";
 import Opportunity from "../../components/Opportunities/Opportunities";
 import FilterMenu from "../../components/FilterMenu/FilerMenu";
 import FailedAuth from "../../components/FailedAuth/FailedAuth";
+import { useParams } from "react-router-dom";
 
 function SavedList() {
   const apiUrl = process.env.REACT_APP_URL;
@@ -13,6 +14,9 @@ function SavedList() {
   const [failedAuth, setFailedAuth] = useState(false);
   const [savedOpportunities, setSavedOpportunities] = useState(null);
   const user = sessionStorage.getItem("user_id");
+  const { oppType } = useParams();
+
+  console.log(savedOpportunities);
 
   const fetchSavedOpportunities = async () => {
     const foundUser = sessionStorage.getItem("user_id");
@@ -38,7 +42,7 @@ function SavedList() {
 
   useEffect(() => {
     fetchSavedOpportunities();
-  }, []);
+  }, [oppType]);
 
   if (failedAuth) {
     return <FailedAuth />;
@@ -51,8 +55,11 @@ function SavedList() {
   return (
     <>
       <Header />
-      <FilterMenu />
-      <Opportunity opportunities={savedOpportunities.savedOpportunities} />
+      <FilterMenu page="saved" />
+      <Opportunity
+        opportunities={savedOpportunities.savedOpportunities}
+        oppType={oppType}
+      />
       <FooterNav />
     </>
   );

@@ -145,9 +145,11 @@ const Profile = ({ user, setUser, setOppType }) => {
             london marathon
           </p>
         </section>
-        <button className="profile__logout" onClick={logOut}>
-          log out
-        </button>
+        <div className="profile__logout-container">
+          <button className="profile__logout" onClick={logOut}>
+            log out
+          </button>
+        </div>
       </main>
 
       <FooterNav />

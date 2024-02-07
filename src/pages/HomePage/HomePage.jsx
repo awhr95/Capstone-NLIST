@@ -2,13 +2,16 @@ import "./HomePage.scss";
 import Header from "../../components/Header/Header";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+
 import FooterNav from "../../components/FooterNav/FooterNav";
 import Opportunity from "../../components/Opportunities/Opportunities";
 import FilterMenu from "../../components/FilterMenu/FilerMenu";
 
-function HomePage({ setUser, user, setOppType, oppType }) {
+function HomePage({ setUser, user, setOppType }) {
   const apiUrl = process.env.REACT_APP_URL;
   const port = process.env.REACT_APP_PORT;
+  const { oppType } = useParams();
 
   const [allOpportunities, setAllOpportunities] = useState(null);
 
@@ -36,7 +39,7 @@ function HomePage({ setUser, user, setOppType, oppType }) {
   return (
     <>
       <Header />
-      <FilterMenu oppType={oppType} setOppType={setOppType} />
+      <FilterMenu />
       <Opportunity
         oppType={oppType}
         setUser={setUser}

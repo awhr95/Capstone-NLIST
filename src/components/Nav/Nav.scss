@@ -5,7 +5,7 @@
 
 .nav {
   display: flex;
-  overflow-y: hidden;
+  overflow-x: scroll;
   &__links {
     text-decoration: none;
     list-style: none;

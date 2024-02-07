@@ -46,6 +46,9 @@ const CreateOpportunity = () => {
     if (!formFields.title) {
       return setError({ ...error, title: true });
     }
+    if (!formFields.address) {
+      return setError({ ...error, address: true });
+    }
     if (!formFields.description) {
       return setError({ ...error, description: true });
     }
@@ -71,7 +74,9 @@ const CreateOpportunity = () => {
     e.preventDefault();
 
     const createdOpp = {
+      user_id: user,
       title: formFields.title,
+      address: formFields.address,
       description: formFields.description,
       type: formFields.type,
       date_of_opportunity: formFields.date_of_opportunity,
@@ -83,21 +88,12 @@ const CreateOpportunity = () => {
     if (isFormValid()) {
       notify();
       setTimeout(() => {
-        navigate("/");
+        // navigate("/");
       }, 5000);
       try {
-        const token = sessionStorage.getItem("token");
-        if (!token) {
-          return setFailedAuth(true);
-        }
         await axios.post(
           `${apiUrl}:${port}/opportunities/create-opportunity`,
-          createdOpp,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
+          createdOpp
         );
       } catch (error) {
         console.log({ error: error.message });
@@ -129,6 +125,18 @@ const CreateOpportunity = () => {
             placeholder="Please add a title"
           />
           <label className="create-op__label" htmlFor="description">
+            Location
+          </label>
+          <input
+            onChange={handleChange}
+            type="text"
+            name="address"
+            className={`create-op__input ${
+              error.title && `create-op__input-error`
+            }`}
+            placeholder="Please add meet location"
+          />
+          <label className="create-op__label" htmlFor="description">
             Description
           </label>
 
@@ -138,7 +146,7 @@ const CreateOpportunity = () => {
             className={`create-op__input create-op__description ${
               error.title && `create-op__input--error`
             }`}
-            placeholder="Please add a detailed description"
+            placeholder="Please add a detailed description of the opportunity"
           />
           <label className="create-op__label" htmlFor="description">
             Type
@@ -203,7 +211,7 @@ const CreateOpportunity = () => {
             <button className="create-op__submit" type="submit">
               Create New Opportunity
             </button>
-            <Link className="create-op__cancel" to="/homepage">
+            <Link className="create-op__cancel" to="/">
               Cancel
             </Link>
           </div>

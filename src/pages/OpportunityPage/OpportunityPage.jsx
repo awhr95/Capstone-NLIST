@@ -27,6 +27,8 @@ const OpportunityPage = ({ setUser, user }) => {
   const [userLogin, setUserLogin] = useState(false);
   const { opportunityId } = useParams();
   const [failedAuth, setFailedAuth] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [signedUp, setSignedUp] = useState(false);
 
   const fetchOpportunity = async () => {
     try {
@@ -64,10 +66,6 @@ const OpportunityPage = ({ setUser, user }) => {
   }, []);
 
   const userOppSignUp = async () => {
-    if (failedAuth) {
-      setUserLogin(true);
-      return;
-    }
     const newRecord = {
       user_id: userId,
       opportunities_id: opportunityId,
@@ -89,6 +87,7 @@ const OpportunityPage = ({ setUser, user }) => {
         newRecord
       );
       notifySuccess("Signed up!");
+      setSignedUp(true);
       fetchOpportunity();
     } catch (error) {
       console.error(error.message);

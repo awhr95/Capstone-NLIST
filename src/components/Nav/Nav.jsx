@@ -1,56 +1,29 @@
 import "./Nav.scss";
+import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-function Nav({ setOppType }) {
+function Nav({ page }) {
+  const path = page ? `/${page}` : "";
   return (
     <nav className="nav">
-      <button
-        onClick={() => {
-          setOppType(null);
-        }}
-        className={"nav__links"}
-      >
-        Home
-      </button>
-      <button
-        onClick={() => {
-          setOppType("Charity");
-        }}
-        className={"nav__links"}
-      >
+      <Link to={`${path}/`} className={"nav__links"}>
+        All
+      </Link>
+      <NavLink to={`${path}/Charity`} className={"nav__links"}>
         Charities
-      </button>
-      <button
-        onClick={() => {
-          setOppType("Event");
-        }}
-        className={"nav__links"}
-      >
+      </NavLink>
+      <NavLink to={`${path}/Event`} className={"nav__links"}>
         Events
-      </button>
-      <button
-        onClick={() => {
-          setOppType("Community");
-        }}
-        className={"nav__links"}
-      >
+      </NavLink>
+      <NavLink to={`${path}/Community`} className={"nav__links"}>
         Community
-      </button>
-      <button
-        onClick={() => {
-          setOppType("Individual");
-        }}
-        className={"nav__links"}
-      >
+      </NavLink>
+      <NavLink to={`${path}/Individual`} className={"nav__links"}>
         Individual
-      </button>
-      <button
-        onClick={() => {
-          setOppType("One-off");
-        }}
-        className={"nav__links"}
-      >
+      </NavLink>
+      <NavLink to={`${path}/One-off`} className={"nav__links"}>
         One-Off
-      </button>
+      </NavLink>
     </nav>
   );
 }

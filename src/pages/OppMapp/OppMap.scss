@@ -6,14 +6,33 @@
 .map {
   &__page {
     display: flex;
+    flex-direction: column;
+
     height: 100vh;
   }
 
   &__list-container {
-    width: 50%;
+    height: 50vh;
+
+    display: flex;
+    flex-direction: row;
+    overflow-x: hidden;
+  }
+
+  &__listings {
+    display: flex;
+    overflow-y: hidden;
+  }
+
+  &__item {
+    width: 100%;
+  }
+
+  &__title {
+    width: 8rem;
   }
   &__container {
-    width: 50%;
+    height: 50vh;
   }
 }
 

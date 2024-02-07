@@ -33,7 +33,11 @@ function Opportunity({ opportunities, oppType }) {
     <section className="opportunities">
       <ul className="opportunities__list">
         {opportunities.map((opportunity) => {
-          if ((oppType && opportunity.type === oppType) || !oppType) {
+          if (
+            (oppType &&
+              opportunity.type.toLowerCase() === oppType.toLowerCase()) ||
+            !oppType
+          ) {
             const formattedDate = new Date(
               opportunity.date_of_opportunity
             ).toLocaleDateString("en-US", {

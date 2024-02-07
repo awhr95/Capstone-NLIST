@@ -4,7 +4,7 @@
 @use "../../styles/partials/resets" as *;
 
 .profile {
-  margin: 1rem;
+  margin: 2rem;
   &__back {
     display: flex;
     justify-content: flex-end;
@@ -58,6 +58,10 @@
   }
   &__bio {
     border-bottom: 1px solid $primary-font-color;
+  }
+  &__logout-container {
+    display: flex;
+    justify-content: center;
   }
   &__logout {
     background-color: $primary-color-alternate;

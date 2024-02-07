@@ -6,6 +6,7 @@ import FooterNav from "../../components/FooterNav/FooterNav";
 import Opportunity from "../../components/Opportunities/Opportunities";
 import FilterMenu from "../../components/FilterMenu/FilerMenu";
 import FailedAuth from "../../components/FailedAuth/FailedAuth";
+import { useParams } from "react-router-dom";
 
 function MyList() {
   const apiUrl = process.env.REACT_APP_URL;
@@ -13,6 +14,8 @@ function MyList() {
 
   const [myOpportunities, setMyOpportunities] = useState(null);
   const [failedAuth, setFailedAuth] = useState(false);
+  // const [oppType, setOppType] = useState(null);
+  const { oppType } = useParams();
 
   const fetchOpportunities = async () => {
     const user = sessionStorage.getItem("user_id");
@@ -44,7 +47,7 @@ function MyList() {
     return (
       <>
         <Header />
-        <FilterMenu />
+        <FilterMenu page="mylist" />
       </>
     );
   }
@@ -52,8 +55,11 @@ function MyList() {
   return (
     <>
       <Header />
-      <FilterMenu />
-      <Opportunity opportunities={myOpportunities.opportunities} />
+      <FilterMenu page="mylist" />
+      <Opportunity
+        opportunities={myOpportunities.opportunities}
+        oppType={oppType}
+      />
       <FooterNav />
     </>
   );
