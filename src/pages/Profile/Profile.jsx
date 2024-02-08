@@ -47,9 +47,6 @@ const Profile = ({ user, setUser, setOppType }) => {
     sessionStorage.removeItem("token");
     setUser(null);
     setFailedAuth(true);
-    setTimeout(() => {
-      navigate("/");
-    }, 500);
   }
 
   if (!profile || failedAuth) {

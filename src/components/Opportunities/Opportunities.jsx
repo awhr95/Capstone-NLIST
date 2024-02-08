@@ -55,6 +55,8 @@ function Opportunity({ opportunities, oppType }) {
                   <p className="opportunities__descpription">
                     {opportunity.description}
                   </p>
+                  <p></p>
+                  <p>People needed {opportunity.number_of_volunteers_needed}</p>
                   <div className="opportunities__details">
                     <p className="opportunities__date">{formattedDate}</p>
                     <div className="opportunities__container">

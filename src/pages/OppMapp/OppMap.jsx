@@ -1,11 +1,11 @@
 import "./OppMap.scss";
 import Header from "../../components/Header/Header";
 import FooterNav from "../../components/FooterNav/FooterNav";
-import FilterMenu from "../../components/FilterMenu/FilerMenu";
 import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 import mapboxgl from "mapbox-gl";
 import customMarkerImg from "../../assets/icons/image-from-rawpixel-id-13084718-original.png";
+import { Link } from "react-router-dom";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAP_BOX_TOKEN;
 
@@ -31,7 +31,7 @@ function OppMap() {
   };
   const fetchMapData = async () => {
     try {
-      const { data } = await axios.get(`${apiUrl}:${port}/map`);
+      const { data } = await axios.get(`${apiUrl}:${port}/map/db`);
       setLocationData(data);
     } catch (error) {
       console.error(error);
@@ -61,11 +61,22 @@ function OppMap() {
               {feature.properties.title}
             </a>
             <div className="map__details">{feature.properties.description}</div>
+            <Link className="map__link" to={"/opportunity/" + (index + 1)}>
+              opportunity details...
+            </Link>
           </div>
         ))}
       </div>
     );
   }
+
+  const PopupContent = ({ title, description }) => (
+    <div>
+      <h3>{title}</h3>
+      <p>{description}</p>
+      <Link></Link>
+    </div>
+  );
 
   useEffect(() => {
     fetchOpportunities();
@@ -145,11 +156,6 @@ function OppMap() {
   return (
     <>
       <Header />
-      {/* <FilterMenu /> */}
-      {/* <div className="sidebar">
-        Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-      </div> */}
-      {/* <div ref={mapContainer} className="map-container"></div> */}
       <div className="map__page">
         <div ref={mapContainer} className="map__container"></div>
         <section className="map__list-container">{listings}</section>

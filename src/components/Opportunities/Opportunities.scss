@@ -4,6 +4,7 @@
 @use "../../styles/partials/resets" as *;
 
 .opportunities {
+  padding-bottom: 5rem;
   &__list {
     margin: 2rem;
     padding: 0;
@@ -41,6 +42,7 @@
     width: 50%;
     justify-content: space-between;
   }
+
   &__subtitle {
     font-size: 0.8rem;
   }

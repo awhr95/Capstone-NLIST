@@ -8,7 +8,7 @@ import FooterNav from "../../components/FooterNav/FooterNav";
 import Opportunity from "../../components/Opportunities/Opportunities";
 import FilterMenu from "../../components/FilterMenu/FilerMenu";
 
-function HomePage({ setUser, user, setOppType }) {
+function HomePage({ setUser, user }) {
   const apiUrl = process.env.REACT_APP_URL;
   const port = process.env.REACT_APP_PORT;
   const { oppType } = useParams();

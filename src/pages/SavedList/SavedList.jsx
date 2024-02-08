@@ -16,8 +16,6 @@ function SavedList() {
   const user = sessionStorage.getItem("user_id");
   const { oppType } = useParams();
 
-  console.log(savedOpportunities);
-
   const fetchSavedOpportunities = async () => {
     const foundUser = sessionStorage.getItem("user_id");
     const token = sessionStorage.getItem("token");

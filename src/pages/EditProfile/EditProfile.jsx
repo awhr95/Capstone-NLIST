@@ -3,9 +3,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import backArrow from "../../assets/icons/backarrow.svg";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import FailedAuth from "../../components/FailedAuth/FailedAuth";
+import { notifySuccess, notifyError } from "../../utils/utils";
 
 const apiUrl = process.env.REACT_APP_URL;
 const port = process.env.REACT_APP_PORT;
@@ -17,28 +18,6 @@ const EditProfile = () => {
   const [failedAuth, setFailedAuth] = useState(false);
 
   const foundUser = sessionStorage.getItem("user_id");
-  const notifySuccess = () =>
-    toast.success("Changes Made!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  const notifyFailure = () =>
-    toast.error("Please fill all fields!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
 
   const fetchProfile = async () => {
     const token = sessionStorage.getItem("token");
@@ -114,14 +93,12 @@ const EditProfile = () => {
           },
         }
       );
-      notifySuccess();
-
+      notifySuccess("Changes Made!");
       setTimeout(() => {
         navigate("/profile");
       }, 3000);
     } else {
-      console.log(editedElement);
-      notifyFailure();
+      notifyError("Please fill all fields!");
     }
   };
 

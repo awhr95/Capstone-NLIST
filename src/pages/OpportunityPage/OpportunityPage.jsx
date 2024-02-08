@@ -21,7 +21,7 @@ const apiUrl = process.env.REACT_APP_URL;
 const port = process.env.REACT_APP_PORT;
 const userId = sessionStorage.getItem("user_id");
 
-const OpportunityPage = ({ setUser, user }) => {
+const OpportunityPage = ({ user }) => {
   const [opportunity, setOpportunity] = useState(null);
   const [oppUser, setOppUser] = useState(null);
   const [userLogin, setUserLogin] = useState(false);
@@ -29,6 +29,7 @@ const OpportunityPage = ({ setUser, user }) => {
   const [failedAuth, setFailedAuth] = useState(false);
   const [saved, setSaved] = useState(false);
   const [signedUp, setSignedUp] = useState(false);
+  const [noProfile, setNoProfile] = useState(false);
 
   const fetchOpportunity = async () => {
     try {
@@ -63,18 +64,23 @@ const OpportunityPage = ({ setUser, user }) => {
   useEffect(() => {
     fetchOpportunity();
     fetchUser();
-  }, []);
+  }, [saved, signedUp]);
 
   const userOppSignUp = async () => {
     const newRecord = {
       user_id: userId,
       opportunities_id: opportunityId,
     };
+    if (oppUser.first_name === "") {
+      notifyInfo("Complete full profile to sign up!");
+      setNoProfile(true);
+      return;
+    }
 
     const volunteerIds = opportunity.cleanUsers.map((volunteer) => {
       return volunteer.id;
     });
-    console.log(volunteerIds);
+    console.log(oppUser);
 
     if (volunteerIds.includes(Number(userId))) {
       notifyInfo("Already Signed Up!");
@@ -98,14 +104,11 @@ const OpportunityPage = ({ setUser, user }) => {
     // if (!userId) {
     //   return;
     // }
-    console.log("hello");
     const newRecord = {
       user_id: userId,
       opportunities_id: opportunityId,
     };
-
     const alreadySaved = oppUser.savedOpportunities.map((opp) => {
-      console.log("map function");
       return opp.id;
     });
 
@@ -121,6 +124,7 @@ const OpportunityPage = ({ setUser, user }) => {
         newRecord
       );
       notifySuccess("Saved!");
+      setSaved(true);
       fetchOpportunity();
     } catch (error) {
       notifyError("Error on saving");
@@ -206,6 +210,13 @@ const OpportunityPage = ({ setUser, user }) => {
           <button className="opportunity__signup" onClick={userOppSignUp}>
             sign up
           </button>
+        </section>
+      )}
+      {noProfile && (
+        <section className="opportunity__buttons">
+          <Link className="opportunity__profile" to={"/edit-profile"}>
+            complete profile
+          </Link>
         </section>
       )}
       <Link to={"/"}>{userLogin ? "Login" : ""}</Link>

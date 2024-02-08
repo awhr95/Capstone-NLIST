@@ -1,7 +1,6 @@
 import "./App.scss";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
-
 import LoginPage from "./pages/LoginPage/LoginPage";
 import Signup from "./pages/SignupPage/SignupPage";
 import HomePage from "./pages/HomePage/HomePage";
@@ -16,8 +15,6 @@ import OppMap from "./pages/OppMapp/OppMap";
 function App() {
   const [user, setUser] = useState(null);
   const [opportunityType, setOpportunityType] = useState(null);
-
-  console.log(user);
 
   useEffect(() => {
     const foundUser = sessionStorage.getItem("user_id");
@@ -37,23 +34,13 @@ function App() {
         <Route
           path="/"
           element={
-            <HomePage
-              setUser={setUser}
-              user={user}
-              oppType={opportunityType}
-              setOppType={setOpportunityType}
-            />
+            <HomePage setUser={setUser} user={user} oppType={opportunityType} />
           }
         />
         <Route
           path={"/:oppType"}
           element={
-            <HomePage
-              setUser={setUser}
-              user={user}
-              oppType={opportunityType}
-              setOppType={setOpportunityType}
-            />
+            <HomePage setUser={setUser} user={user} oppType={opportunityType} />
           }
         />
         <Route path="/mylist" element={<MyList />} />
