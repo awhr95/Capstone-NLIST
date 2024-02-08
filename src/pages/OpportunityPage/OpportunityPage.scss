@@ -53,6 +53,7 @@
   &__buttons {
     display: flex;
     justify-content: space-evenly;
+    padding-top: 1rem;
   }
   &__signup {
     background-color: $primary-color-alternate;
@@ -62,6 +63,7 @@
     text-align: center;
     width: 8rem;
     height: 2rem;
+    color: white;
   }
   &__save {
     background-color: $primary-color;
@@ -75,13 +77,31 @@
   }
   &__login {
     background-color: $primary-color-alternate;
-    color: $primary-font-color;
-    border: 1px solid $primary-color-alternate;
     border-radius: 5px;
+    border: none;
     text-decoration: none;
     text-align: center;
-    width: 8rem;
+    width: 15rem;
     height: 2rem;
-    margin-top: 1rem;
+    padding-top: 0.5rem;
+  }
+  &__profile {
+    background-color: $primary-color-alternate;
+    border-radius: 5px;
+    border: none;
+    text-decoration: none;
+    text-align: center;
+    width: 19.2rem;
+    height: 2rem;
+    padding-top: 0.5rem;
+    color: white;
+  }
+  &__link {
+    text-decoration: none;
+    color: white;
+  }
+  &__login-container {
+    display: flex;
+    justify-content: center;
   }
 }

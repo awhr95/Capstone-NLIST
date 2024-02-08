@@ -6,37 +6,51 @@ import userImg from "../../assets/icons/user.svg";
 import FooterNav from "../../components/FooterNav/FooterNav";
 import backArrow from "../../assets/icons/backarrow.svg";
 import edit from "../../assets/icons/Edit.svg";
+import FailedAuth from "../../components/FailedAuth/FailedAuth";
 
 const apiUrl = process.env.REACT_APP_URL;
 const port = process.env.REACT_APP_PORT;
 
-const Profile = ({ user }) => {
+const Profile = ({ user, setUser, setOppType }) => {
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
-
-  const foundUser = sessionStorage.getItem("user_id");
-
-  const fetchProfile = async () => {
-    try {
-      const response = await axios.get(`${apiUrl}:${port}/users/${foundUser}`);
-      setProfile(response.data);
-    } catch (error) {}
-  };
+  const [failedAuth, setFailedAuth] = useState(false);
 
   useEffect(() => {
+    const fetchProfile = async () => {
+      const foundUser = sessionStorage.getItem("user_id");
+      const token = sessionStorage.getItem("token");
+      if (!token) {
+        return setFailedAuth(true);
+      }
+      try {
+        const { data } = await axios.get(
+          `${apiUrl}:${port}/users/${foundUser}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+        setProfile(data);
+      } catch (error) {
+        setFailedAuth(true);
+        console.error(error.message);
+      }
+    };
+
     fetchProfile();
   }, []);
 
   function logOut() {
     sessionStorage.removeItem("user_id");
     sessionStorage.removeItem("token");
-    setTimeout(() => {
-      navigate("/");
-    }, 500);
+    setUser(null);
+    setFailedAuth(true);
   }
 
-  if (!profile) {
-    return <p>Loading...</p>;
+  if (!profile || failedAuth) {
+    return <FailedAuth setOppType={setOppType} />;
   }
 
   return (
@@ -128,9 +142,11 @@ const Profile = ({ user }) => {
             london marathon
           </p>
         </section>
-        <button className="profile__logout" onClick={logOut}>
-          log out
-        </button>
+        <div className="profile__logout-container">
+          <button className="profile__logout" onClick={logOut}>
+            log out
+          </button>
+        </div>
       </main>
 
       <FooterNav />

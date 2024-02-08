@@ -3,8 +3,10 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import backArrow from "../../assets/icons/backarrow.svg";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import FailedAuth from "../../components/FailedAuth/FailedAuth";
+import { notifySuccess, notifyError } from "../../utils/utils";
 
 const apiUrl = process.env.REACT_APP_URL;
 const port = process.env.REACT_APP_PORT;
@@ -13,35 +15,26 @@ const EditProfile = () => {
   const [error, setError] = useState({});
   const [profile, setProfile] = useState(null);
   const navigate = useNavigate();
+  const [failedAuth, setFailedAuth] = useState(false);
+
   const foundUser = sessionStorage.getItem("user_id");
-  const notifySuccess = () =>
-    toast.success("Changes Made!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  const notifyFailure = () =>
-    toast.error("Please fill all fields!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
 
   const fetchProfile = async () => {
+    const token = sessionStorage.getItem("token");
+    if (!token) {
+      return setFailedAuth(true);
+    }
     try {
-      const response = await axios.get(`${apiUrl}:${port}/users/${foundUser}`);
-      setProfile(response.data);
-    } catch (error) {}
+      const { data } = await axios.get(`${apiUrl}:${port}/users/${foundUser}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      setProfile(data);
+    } catch (error) {
+      console.error({ error: error.message });
+      return setFailedAuth(true);
+    }
   };
 
   useEffect(() => {
@@ -52,8 +45,8 @@ const EditProfile = () => {
     setProfile({ ...profile, [event.target.name]: event.target.value });
   };
 
-  if (!profile) {
-    return <section>Loading...</section>;
+  if (!profile || failedAuth) {
+    return <FailedAuth />;
   }
   const isFormValid = () => {
     if (!profile.user_name) {
@@ -86,18 +79,26 @@ const EditProfile = () => {
     };
 
     if (isFormValid()) {
+      const foundUser = sessionStorage.getItem("user_id");
+      const token = sessionStorage.getItem("token");
+      if (!token) {
+        return setFailedAuth(true);
+      }
       await axios.put(
         `${apiUrl}:${port}/users/account/${foundUser}`,
-        editedElement
+        editedElement,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
-      notifySuccess();
-
+      notifySuccess("Changes Made!");
       setTimeout(() => {
         navigate("/profile");
       }, 3000);
     } else {
-      console.log(editedElement);
-      notifyFailure();
+      notifyError("Please fill all fields!");
     }
   };
 

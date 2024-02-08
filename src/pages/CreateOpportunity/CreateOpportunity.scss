@@ -4,7 +4,8 @@
 @use "../../styles/partials/resets" as *;
 
 .create-op {
-  margin: 1rem;
+  margin: 2rem;
+  padding-bottom: 5rem;
 
   &__back {
     display: flex;
@@ -45,7 +46,7 @@
     width: 8rem;
   }
   &__description {
-    height: 3rem;
+    height: 4rem;
   }
   &__buttons {
     padding-top: 1rem;

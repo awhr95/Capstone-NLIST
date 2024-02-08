@@ -4,18 +4,58 @@
 @use "../../styles/partials/resets" as *;
 
 .map-container {
-  height: 400px;
+  height: 100%;
 }
 
-.sidebar {
-  background-color: rgb(35 55 75 / 90%);
-  color: #fff;
-  padding: 6px 12px;
-  font-family: monospace;
-  //   z-index: 1;
-  //   position: absolute;
-  top: 0;
-  left: 0;
-  margin: 12px;
-  border-radius: 4px;
+.map {
+  &__page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+  }
+
+  &__list-container {
+    height: 38vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+  }
+
+  &__listings {
+    display: flex;
+    flex-direction: row-reverse;
+    overflow-x: auto;
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  &__item {
+    flex: 0 0 auto;
+    width: 15rem;
+    margin-right: 1rem;
+  }
+
+  &__title {
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+    color: $primary-color-alternate;
+  }
+
+  &__details {
+    font-size: 0.8rem;
+    color: $primary-font-color;
+    word-wrap: break-word;
+  }
+  &__link {
+    text-decoration: none;
+    color: $primary-color;
+  }
+
+  &__container {
+    height: 65vh;
+  }
 }

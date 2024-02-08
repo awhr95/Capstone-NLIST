@@ -8,10 +8,24 @@
   display: flex;
   height: 5rem;
   align-items: center;
-  flex-direction: column;
+  justify-content: space-around;
   padding: 1rem;
 
   &__logo {
     height: 100%;
+  }
+
+  &__login {
+    background-color: $primary-color-alternate;
+    border-radius: 5px;
+    border: none;
+    text-decoration: none;
+    width: 5rem;
+    height: 2rem;
+    color: white;
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
   }
 }

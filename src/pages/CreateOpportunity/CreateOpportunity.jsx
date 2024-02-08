@@ -14,6 +14,8 @@ const port = process.env.REACT_APP_PORT;
 const CreateOpportunity = () => {
   const navigate = useNavigate();
   const [error, setError] = useState({});
+  const [failedAuth, setFailedAuth] = useState(false);
+
   const user = sessionStorage.getItem("user_id");
   const notify = () =>
     toast.success("Listing Created!", {
@@ -44,6 +46,9 @@ const CreateOpportunity = () => {
     if (!formFields.title) {
       return setError({ ...error, title: true });
     }
+    if (!formFields.address) {
+      return setError({ ...error, address: true });
+    }
     if (!formFields.description) {
       return setError({ ...error, description: true });
     }
@@ -71,6 +76,7 @@ const CreateOpportunity = () => {
     const createdOpp = {
       user_id: user,
       title: formFields.title,
+      address: formFields.address,
       description: formFields.description,
       type: formFields.type,
       date_of_opportunity: formFields.date_of_opportunity,
@@ -82,7 +88,7 @@ const CreateOpportunity = () => {
     if (isFormValid()) {
       notify();
       setTimeout(() => {
-        navigate("/");
+        // navigate("/");
       }, 5000);
       try {
         await axios.post(
@@ -91,6 +97,7 @@ const CreateOpportunity = () => {
         );
       } catch (error) {
         console.log({ error: error.message });
+        setFailedAuth(true);
       }
     }
   };
@@ -118,6 +125,18 @@ const CreateOpportunity = () => {
             placeholder="Please add a title"
           />
           <label className="create-op__label" htmlFor="description">
+            Location
+          </label>
+          <input
+            onChange={handleChange}
+            type="text"
+            name="address"
+            className={`create-op__input ${
+              error.title && `create-op__input-error`
+            }`}
+            placeholder="Please add meet location"
+          />
+          <label className="create-op__label" htmlFor="description">
             Description
           </label>
 
@@ -127,7 +146,7 @@ const CreateOpportunity = () => {
             className={`create-op__input create-op__description ${
               error.title && `create-op__input--error`
             }`}
-            placeholder="Please add a detailed description"
+            placeholder="Please add a detailed description of the opportunity"
           />
           <label className="create-op__label" htmlFor="description">
             Type
@@ -192,7 +211,7 @@ const CreateOpportunity = () => {
             <button className="create-op__submit" type="submit">
               Create New Opportunity
             </button>
-            <Link className="create-op__cancel" to="/homepage">
+            <Link className="create-op__cancel" to="/">
               Cancel
             </Link>
           </div>

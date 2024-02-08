@@ -4,7 +4,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import backArrow from "../../assets/icons/backarrow.svg";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
+import { notifySuccess, notifyInfo, notifyError } from "../../utils/utils";
 import "react-toastify/dist/ReactToastify.css";
 
 function timeFormatter(timeString) {
@@ -20,55 +21,15 @@ const apiUrl = process.env.REACT_APP_URL;
 const port = process.env.REACT_APP_PORT;
 const userId = sessionStorage.getItem("user_id");
 
-const OpportunityPage = () => {
+const OpportunityPage = ({ user }) => {
   const [opportunity, setOpportunity] = useState(null);
-  const [user, setUser] = useState(null);
+  const [oppUser, setOppUser] = useState(null);
   const [userLogin, setUserLogin] = useState(false);
   const { opportunityId } = useParams();
-  const notifySave = () =>
-    toast.success("Saved for later!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  const notifySignup = () =>
-    toast.success("Signed up!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  const notifyAlreadySignedUp = () =>
-    toast.info("Already signed up!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
-  const notifyAlreadySaved = () =>
-    toast.info("Already saved!", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "light",
-    });
+  const [failedAuth, setFailedAuth] = useState(false);
+  const [saved, setSaved] = useState(false);
+  const [signedUp, setSignedUp] = useState(false);
+  const [noProfile, setNoProfile] = useState(false);
 
   const fetchOpportunity = async () => {
     try {
@@ -82,11 +43,20 @@ const OpportunityPage = () => {
   };
 
   const fetchUser = async () => {
+    const token = sessionStorage.getItem("token");
+    if (!token) {
+      return setFailedAuth(true);
+    }
     try {
       const response = await axios.get(
-        `${apiUrl}:${port}/users/saved/${userId}`
+        `${apiUrl}:${port}/users/saved/${userId}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
-      setUser(response.data);
+      setOppUser(response.data);
     } catch (error) {
       console.error(error.message);
     }
@@ -94,24 +64,26 @@ const OpportunityPage = () => {
   useEffect(() => {
     fetchOpportunity();
     fetchUser();
-  }, []);
+  }, [saved, signedUp]);
 
   const userOppSignUp = async () => {
-    if (!userId) {
-      setUserLogin(true);
-      return;
-    }
     const newRecord = {
       user_id: userId,
       opportunities_id: opportunityId,
     };
+    if (oppUser.first_name === "") {
+      notifyInfo("Complete full profile to sign up!");
+      setNoProfile(true);
+      return;
+    }
 
     const volunteerIds = opportunity.cleanUsers.map((volunteer) => {
       return volunteer.id;
     });
+    console.log(oppUser);
 
     if (volunteerIds.includes(Number(userId))) {
-      notifyAlreadySignedUp();
+      notifyInfo("Already Signed Up!");
       return;
     }
 
@@ -120,7 +92,8 @@ const OpportunityPage = () => {
         `${apiUrl}:${port}/opportunities/signup/${opportunityId}`,
         newRecord
       );
-      notifySignup();
+      notifySuccess("Signed up!");
+      setSignedUp(true);
       fetchOpportunity();
     } catch (error) {
       console.error(error.message);
@@ -128,20 +101,20 @@ const OpportunityPage = () => {
   };
 
   const userOppSave = async () => {
-    if (!userId) {
-      return;
-    }
+    // if (!userId) {
+    //   return;
+    // }
     const newRecord = {
       user_id: userId,
       opportunities_id: opportunityId,
     };
-
-    const alreadySaved = user.savedOpportunities.map((opp) => {
+    const alreadySaved = oppUser.savedOpportunities.map((opp) => {
       return opp.id;
     });
 
     if (alreadySaved.includes(Number(opportunityId))) {
-      notifyAlreadySaved();
+      console.log("already saved");
+      notifyInfo("Already Saved!");
       return;
     }
 
@@ -150,9 +123,11 @@ const OpportunityPage = () => {
         `${apiUrl}:${port}/opportunities/save/${opportunityId}`,
         newRecord
       );
-      notifySave();
+      notifySuccess("Saved!");
+      setSaved(true);
       fetchOpportunity();
     } catch (error) {
+      notifyError("Error on saving");
       console.error(error.message);
     }
   };
@@ -216,9 +191,16 @@ const OpportunityPage = () => {
         </section>
       </main>
 
-      <Link className="opportunity__login" to={"/login"}>
-        {!user ? "login in to sign up or save" : null}
-      </Link>
+      <section className="opportunity__login-container">
+        <Link className="opportunity__link" to={"/login"}>
+          {!user ? (
+            <p className="opportunity__login">
+              {" "}
+              login in to sign up to opportunity
+            </p>
+          ) : null}
+        </Link>
+      </section>
 
       {user && (
         <section className="opportunity__buttons">
@@ -228,6 +210,13 @@ const OpportunityPage = () => {
           <button className="opportunity__signup" onClick={userOppSignUp}>
             sign up
           </button>
+        </section>
+      )}
+      {noProfile && (
+        <section className="opportunity__buttons">
+          <Link className="opportunity__profile" to={"/edit-profile"}>
+            complete profile
+          </Link>
         </section>
       )}
       <Link to={"/"}>{userLogin ? "Login" : ""}</Link>
