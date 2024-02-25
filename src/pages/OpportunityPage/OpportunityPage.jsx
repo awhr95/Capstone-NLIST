@@ -62,8 +62,8 @@ const OpportunityPage = ({ user }) => {
     }
   };
   useEffect(() => {
-    fetchOpportunity();
     fetchUser();
+    fetchOpportunity();
   }, [saved, signedUp]);
 
   const userOppSignUp = async () => {
@@ -94,7 +94,7 @@ const OpportunityPage = ({ user }) => {
       );
       notifySuccess("Signed up!");
       setSignedUp(true);
-      fetchOpportunity();
+      // fetchOpportunity();
     } catch (error) {
       console.error(error.message);
     }
